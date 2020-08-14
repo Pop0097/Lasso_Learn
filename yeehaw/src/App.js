@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from "./pages/Home"
 import Landing from "./pages/Landing"
+import { useStateValue } from "./StateProvider";
 
 function App() {
   //React Context API --> user state
-  const [user, setUser] = useState()
+  const [{ user }, dispatch] = useStateValue();
   return (
     <div className="App">
       <Router>
@@ -16,7 +17,7 @@ function App() {
           <Landing />
         ) : (
           <>
-          <Header />
+          <Header /> <br />
           <div className="app-body">
             <Switch>
               <Route exact path="/" component={Home}/>

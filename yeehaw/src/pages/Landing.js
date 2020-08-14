@@ -1,10 +1,24 @@
 import React from 'react'
 import { Button } from "@material-ui/core";
 import "../styles/landing.css";
+import {provider, auth} from "../firebase";
+import { useStateValue } from "../StateProvider";
 
 function Landing() {
-  const signIn = () => {
-    console.log("You Clicked the Sign In Button!")
+  const [state, dispatch] = useStateValue()
+  const signIn = (e) => {
+		auth
+			.signInWithPopup(provider)
+			.then((result) => {
+				console.log(result)
+				dispatch({
+					type: "set_user",
+					user: result,
+				});
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
   }
 
   return (
@@ -24,6 +38,3 @@ function Landing() {
 }
 
 export default Landing
-
-
-

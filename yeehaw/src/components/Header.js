@@ -14,7 +14,7 @@ class SearchBar extends Component {
     }
 
     onChange = (event) => {
-        this.setStaet({ [event.target.name]: event.target.value });
+        this.setState({ [event.target.name]: event.target.value });
     }
     
     onSubmit = (event) => {
@@ -34,9 +34,9 @@ class SearchBar extends Component {
 
         return (
             <div className="SearchBar">
-                <form className="SearchForm" onSubmit={this.onSubmit}>
-                    <input type="text" value={search} onChange={this.onChange} id="search-input" placeHolder="Search for a Course!" />
-                    <button disabled={isInvalid} id="submit-button" type="submit"> Search! </button>
+                <form className="SearchForm center" onSubmit={this.onSubmit}>
+                    <input name="search" type="text" value={search} onChange={this.onChange} id="search-input" placeHolder="Search for a Course!" />
+                    <button disabled={isInvalid} id="submit-button" type="submit"> Go </button>
                 </form>
             </div>
         );
@@ -46,15 +46,15 @@ class SearchBar extends Component {
 function Header() {
     return(
         <div className="HeaderContainer">
-            <div className="row">
-                <div classname="col-3 my-auto HeaderLogo">
+            <div className="row height100">
+                <div className="col-md-3 col-2 my-auto HeaderLogo text-center">
                     <h1>LLearn!</h1>
                 </div>
-                <div className="col-6 my-auto ">
+                <div className="col-md-6 col-8 my-auto">
                     <SearchBar />
                 </div>
-                <div className="col-3 my-auto AccountLink">
-                    <p>Account Link</p>
+                <div className="col-md-3 col-2 my-auto AccountLink text-center">
+                    <p>Account </p>
                 </div>
             </div>
         </div>
