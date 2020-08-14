@@ -6,7 +6,7 @@ import { useStateValue } from "../StateProvider";
 import { useHistory } from 'react-router-dom';
 
 function Landing() {
-  let history = useHistory();
+  // let history = useHistory();
   const [{user}, dispatch] = useStateValue()
   const signIn = (e) => {
 		auth
@@ -16,7 +16,6 @@ function Landing() {
 					type: "set_user",
 					user: result.user,
 				});
-				console.log(result.user)
 				db.collection("users").doc(result.user.email).set({
 					displayName: result.user.displayName,
 					email: result.user.email,
@@ -26,7 +25,7 @@ function Landing() {
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
 				}, {merge: true}).then(function() {
-          history.push("/");
+          // history.push("/");
 					console.log("user added to database!")
 				})
 			})

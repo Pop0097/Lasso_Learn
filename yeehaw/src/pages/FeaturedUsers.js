@@ -1,62 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import UserCard from "../components/UserCard";
+import db from "../firebase";
 
 function FeaturedUsers() {
-    /* Use Firestore to get 12 courses and display them in table format. Large page will be 3*4 and small page will be 2*6 */
-    
+    const [featuredUsers, setFeaturedUsers] = useState([])
     useEffect(() => {
-
-    })
+        db.collection("users").onSnapshot((snapshot) => {
+            setFeaturedUsers(
+                snapshot.docs.map((doc)=> doc.data()))
+        })
+    }, [])
 
     return(
-
-        <div className="featured-users-container">
-            <h2 id="welcome-header"> Howdy ___(User's name)___! {/* User's username */}</h2>
-            <hr className="center"/>
-            <h3 id="featured-courses-header"> Featured Users </h3> 
-        </div>
-        {/* <div className="CoursesTableContainer">
-            <div className="row">
-                <div className="col-md-4 col-6">
-                    <p>1</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>2</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>3</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>4</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>5</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>6</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>7</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>8</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>9</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>10</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>11</p>
-                </div>
-                <div className="col-md-4 col-6">
-                    <p>12</p>
-                </div>
+        <div className="featured-users">
+            <p>this is the featured users page</p>
+            <div className="featured-users-container">
+            {/* add key to each map child*/}
+                {featuredUsers.map((user) => (
+                    <UserCard user={user}/>
+                ))}
             </div>
-        </div> */}
+        </div>
     );
 }
 

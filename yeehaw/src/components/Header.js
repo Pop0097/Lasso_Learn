@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/header.css';
 import { useStateValue } from "../StateProvider";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 function SearchBar() {
     const [input, setInput] = useState("");
@@ -48,7 +48,7 @@ function Header() {
                     <SearchBar />
                 </div>
                 <div className="col-md-3 col-2 my-auto AccountLink text-center">
-                    <p>Account </p>
+                    <Link to="/account">Account</Link> 
                 </div>
             </div>
         </div>

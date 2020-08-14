@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStateValue } from "../StateProvider";
-import { HomeLink } from './Home';
+import { HomeLink } from './FeaturedUsers';
 
 function ResultsTable() {
     /* Call to the firestore database with the searched term to pull up results */
