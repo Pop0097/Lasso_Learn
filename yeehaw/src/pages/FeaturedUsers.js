@@ -6,9 +6,18 @@ import { Link } from 'react-router-dom';
 function FeaturedUsers() {
     /* Use Firestore to get 12 courses and display them in table format. Large page will be 3*4 and small page will be 2*6 */
     
-    
+    useEffect(() => {
+
+    })
+
     return(
-        <div className="CoursesTableContainer">
+
+        <div className="featured-users-container">
+            <h2 id="welcome-header"> Howdy ___(User's name)___! {/* User's username */}</h2>
+            <hr className="center"/>
+            <h3 id="featured-courses-header"> Featured Users </h3> 
+        </div>
+        {/* <div className="CoursesTableContainer">
             <div className="row">
                 <div className="col-md-4 col-6">
                     <p>1</p>
@@ -47,19 +56,7 @@ function FeaturedUsers() {
                     <p>12</p>
                 </div>
             </div>
-        </div>
-    );
-}
-
-function Home() {
-    return (
-        <div className="HomeContainer">
-           <h2 id="welcome-header"> Howdy ___(User's name)___! {/* User's username */}</h2>
-           <hr className="center"/>
-           <h3 id="featured-courses-header"> Featured Users </h3> 
-           {/* Display the featured courses using Bootstrap table format and pull some items from Firestore  */}
-           <FeaturedUsers />
-        </div>
+        </div> */}
     );
 }
 
@@ -67,7 +64,7 @@ const HomeLink = () => (
     <p> Go back to <Link to="/">Home</Link> </p>
 );
 
-export default Home
+export default FeaturedUsers
 
 export { HomeLink }
 

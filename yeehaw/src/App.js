@@ -3,14 +3,13 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
-import Home from "./pages/Home"
+import FeaturedUsers from "./pages/FeaturedUsers"
 import Landing from "./pages/Landing"
 import Account from "./pages/Account";
 import Search from './pages/Search';
 import { useStateValue } from "./StateProvider";
 
 function App() {
-  //React Context API --> user state
   const [{ user }, dispatch] = useStateValue();
   return (
     <div className="App">
@@ -23,7 +22,7 @@ function App() {
           <br />
           <div className="app-body">
             <Switch>
-              <Route exact path="/" component={Home}/>
+              <Route exact path="/" component={FeaturedUsers}/>
               <Route path="/account" component={Account} />
               <Route path ="/search" component={Search} />
             </Switch>            

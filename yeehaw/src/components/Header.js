@@ -5,7 +5,6 @@ import { useStateValue } from "../StateProvider";
 import { useHistory } from 'react-router-dom';
 
 function SearchBar() {
-
     const [input, setInput] = useState("");
     const [{search}, dispatch] = useStateValue();
     let history = useHistory();
