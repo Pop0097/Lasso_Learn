@@ -1,46 +1,41 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/header.css';
+import { useStateValue } from "../StateProvider";
+import { useHistory } from 'react-router-dom';
 
-const FORM_INITIAL_STATE = {
-    search: '',
-};
+function SearchBar() {
 
-class SearchBar extends Component {
-    constructor(props) {
-        super(props);
+    const [input, setInput] = useState("");
+    const [{search}, dispatch] = useStateValue();
+    let history = useHistory();
 
-        this.state = { ...FORM_INITIAL_STATE };
+    const onChange = (event) => {
+        setInput(event.target.value);
     }
 
-    onChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+    const onSubmit = (event) => {
+        event.preventDefault();
+        dispatch({
+            type: "set_search",
+            search_value: input
+        })
+        console.log(input);
+        setInput("");
+        
+        history.push("/search");
     }
     
-    onSubmit = (event) => {
-        event.preventDefault();
+    const isInvalid = input === '';
 
-        const { search } = this.state;
-
-        alert(search);
-
-        /* Call to the firestore database with the searched term to pull up results */
-    }
-
-    render() {
-        const { search } = this.state;
-
-        const isInvalid = search === '';
-
-        return (
-            <div className="SearchBar">
-                <form className="SearchForm center" onSubmit={this.onSubmit}>
-                    <input name="search" type="text" value={search} onChange={this.onChange} id="search-input" placeHolder="Search for a Course!" />
-                    <button disabled={isInvalid} id="submit-button" type="submit"> Go </button>
-                </form>
-            </div>
-        );
-    }
+    return (
+        <div className="SearchBar">
+            <form className="SearchForm center" onSubmit={onSubmit}>
+                <input name="input" type="text" value={input} onChange={onChange} id="search-input" placeHolder="Search for a Course!" />
+                <button disabled={isInvalid} id="submit-button" type="submit"> Go </button>
+            </form>
+        </div>
+    );
 }
 
 function Header() {

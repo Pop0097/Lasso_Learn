@@ -1,9 +1,9 @@
 import React from 'react'
 import '../styles/home.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
-
-function CoursesTable() {
+function PeopleTable() {
     /* Use Firestore to get 12 courses and display them in table format. Large page will be 3*4 and small page will be 2*6 */
     
     return(
@@ -53,13 +53,19 @@ function CoursesTable() {
 function Home() {
     return (
         <div className="HomeContainer">
-           <h2 id="welcome-header"> Howdy ________! {/* User's username */}</h2>
+           <h2 id="welcome-header"> Howdy ___(User's name)___! {/* User's username */}</h2>
            <hr className="center"/>
            <h3 id="featured-courses-header"> Featured Courses </h3> 
            {/* Display the featured courses using Bootstrap table format and pull some items from Firestore  */}
-           <CoursesTable />
+           <PeopleTable />
         </div>
-    )
+    );
 }
 
+const HomeLink = () => (
+    <p> Go back to <Link to="/">Home</Link> </p>
+);
+
 export default Home
+
+export { HomeLink }

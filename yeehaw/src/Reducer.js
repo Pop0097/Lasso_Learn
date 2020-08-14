@@ -1,5 +1,6 @@
 export const initialState = {
 	user: null,
+	search: ""
 };
 
 const reducer = (state, action) => {
@@ -8,6 +9,11 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				user: action.user,
+			};
+		case "set_search":
+			return {
+				...state,
+				search: action.search_value,
 			};
 		default:
 			return state;

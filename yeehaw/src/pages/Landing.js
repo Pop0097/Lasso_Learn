@@ -1,20 +1,34 @@
 import React from 'react'
 import { Button } from "@material-ui/core";
 import "../styles/landing.css";
-import {provider, auth} from "../firebase";
+import db, {provider, auth} from "../firebase";
 import { useStateValue } from "../StateProvider";
+import { useHistory } from 'react-router-dom';
 
 function Landing() {
-  const [state, dispatch] = useStateValue()
+  let history = useHistory();
+  const [{user}, dispatch] = useStateValue()
   const signIn = (e) => {
 		auth
 			.signInWithPopup(provider)
 			.then((result) => {
-				console.log(result)
 				dispatch({
 					type: "set_user",
-					user: result,
+					user: result.user,
 				});
+				console.log(result.user)
+				db.collection("users").doc(result.user.email).set({
+					displayName: result.user.displayName,
+					email: result.user.email,
+					proflePicture: result.user.photoURL,
+          coursesOffered: [],
+          desiredCourses: [],
+					points: 20, //points and coins will be reset if we keep this code
+					coins: 60
+				}, {merge: true}).then(function() {
+          history.push("/");
+					console.log("user added to database!")
+				})
 			})
 			.catch((error) => {
 				alert(error.message);

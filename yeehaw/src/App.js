@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from "./pages/Home"
 import Landing from "./pages/Landing"
+import Account from "./pages/Account";
+import Search from './pages/Search';
 import { useStateValue } from "./StateProvider";
 
 function App() {
@@ -17,10 +19,13 @@ function App() {
           <Landing />
         ) : (
           <>
-          <Header /> <br />
+          <Header /> 
+          <br />
           <div className="app-body">
             <Switch>
               <Route exact path="/" component={Home}/>
+              <Route path="/account" component={Account} />
+              <Route path ="/search" component={Search} />
             </Switch>            
           </div>
           </>
