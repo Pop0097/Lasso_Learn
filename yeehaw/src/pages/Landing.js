@@ -6,12 +6,11 @@ import { useStateValue } from "../StateProvider";
 
 function Landing() {
 	const [state, dispatch] = useStateValue()
-	const signIn = () => {
+
+	const signIn = (e) => {
 		auth
 			.signInWithPopup(provider)
 			.then((result) => {
-				//set user in local statel
-				console.log(result.user)
 				dispatch({
 					type: "set_user",
 					user: result.user,
@@ -22,15 +21,13 @@ function Landing() {
 					email: result.user.email,
 					profilePicture: result.user.photoURL,
 					coursesOffered: ["CSS", "HTML"],
-					desiredCourses: ["English"],
+					desiredCourses: ["English", "French"],
 					numCoursesOffered: 2,
-					numCoursesDesired: 1,
+					numCoursesDesired: 2,
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
-				}, {merge: true}).then(function() {
-					//alert(`${result.user.displayName} has logged in!`)
 				}).catch((error) => {
-				alert(error.message);
+					alert(error.message);
 			});
 		})
 	}

@@ -27,8 +27,8 @@ function App() {
               <Route path="/account" component={Account} />
               <Route path="/search" component={Search} />
               <Route path="/userRoom">
-                  <Sidebar />
-                  <Route path="/userRoom/:hostEmail" component={ChatRoom}/>
+              <Sidebar />
+                <Route path="/:hostEmail" component={ChatRoom}/>
               </Route>
             </Switch>            
           </div>
