@@ -18,7 +18,6 @@ function FeaturedUsers() {
 
     return(
         <div className="featured-users">
-            <p>this is the featured users page</p>
             <div className="featured-users-container row-flex">
             {/* add key to each map child*/}
                 {featuredUsers.map((user) => (

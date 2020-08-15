@@ -3,12 +3,10 @@ import { Button } from "@material-ui/core";
 import "../styles/landing.css";
 import db, {provider, auth} from "../firebase";
 import { useStateValue } from "../StateProvider";
-import { useHistory } from 'react-router-dom';
 
 function Landing() {
-
 	const [state, dispatch] = useStateValue()
-	const signIn = (e) => {
+	const signIn = () => {
 		auth
 			.signInWithPopup(provider)
 			.then((result) => {
@@ -21,13 +19,15 @@ function Landing() {
 				db.collection("users").doc(result.user.email).set({
 					displayName: result.user.displayName,
 					email: result.user.email,
-					proflePicture: result.user.photoURL,
+					profilePicture: result.user.photoURL,
 					coursesOffered: [],
 					desiredCourses: [],
+					numCoursesOffered: 0,
+					numCoursesDesired: 0,
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
 				}, {merge: true}).then(function() {
-					console.log("user added to database!")
+					alert(`${result.user.displayName} has logged in!`)
 				}).catch((error) => {
 				alert(error.message);
 			});

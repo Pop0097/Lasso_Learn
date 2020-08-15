@@ -1,11 +1,15 @@
 .HeaderContainer {
     height: 60px;
+    background-color: rgba(241, 213, 110, 1);
+    margin-bottom: 0;
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .HeaderLogo h1{
     font-size: 40px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    font-family: Freakshow;
 }
 
 .SearchForm {

@@ -1,17 +1,26 @@
 .usercard {
   color: #3f3530;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  width: max(30vw, 300px);
+  margin: 1.5vw;
+  padding: 3vh 1.5vw;
   background-image: url("../assets/paper.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-position: center;
+  background-size: 100% 100%;
+  text-align: center;
+  width: min(30vw, 300px);
+  height: min(40vw, 400px);
+}
+
+.usercard * {
+  margin: 0 auto;
 }
 
 .usercard-pic{
-  width: max(25vw, 200px);
-  height: max(25vw, 200px);
+  width: min(15vw, 150px);
+  height: min(15vw, 150px);
+  margin: 0.5vw;
 }
+
 
 
 

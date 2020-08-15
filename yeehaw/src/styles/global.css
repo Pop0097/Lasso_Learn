@@ -7,9 +7,11 @@
 
 body{
   font-family: Freakshow, serif;
+  overflow: auto;
 }
 
 .row-flex{
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
 }

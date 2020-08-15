@@ -1,8 +1,14 @@
-
+.AccountContainer{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
 
 .TopHalfContainer{
     min-height: calc(40vh - 60px);
     background: linear-gradient(0.25turn, rgba(249, 213,110), rgba(232, 89, 91)); 
+    margin-top: 0;
+    width: 100%;
 }
 
 #name{
@@ -17,6 +23,7 @@
     width: 250px;
     height: 250px;
     border-radius: 125px;
+    border: 1px solid black;
 }
 
 .BottomHalfContainer{
@@ -31,18 +38,26 @@
     background-image: url("../assets/paper.png");
     background-repeat: no-repeat;
     background-size: cover; 
-    width: 300px;
-    height: 413px;
+    width: 375px;
+    height: 515px;
     padding-top: 10px;
     padding: 20px;
 }
 
 .TokenName, .TokenValue{
     font-family: Freakshow;
-
     color: rgba(92, 69, 57, 1);
     font-size: 30px;
     text-align: left;
+}
+
+.UserPreferences{
+    margin-top: 80px;
+    width: 708px;
+    height: 515px;
+    background-image: url("../assets/paper-horizontal.png");
+    background-repeat: no-repeat;
+    background-size: cover; 
 }
 
 .height100{

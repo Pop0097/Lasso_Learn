@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/header.css';
 import { useStateValue } from "../StateProvider";
 import { useHistory, Link } from 'react-router-dom';
+import db from "../firebase";
 
 function SearchBar() {
     const [input, setInput] = useState("");
@@ -37,18 +38,40 @@ function SearchBar() {
     );
 }
 
+function Linker({ user }){
+    return(
+        <Link to={{
+            pathname: '/account',
+            state: {
+                person: user
+            }
+        }}> 
+            Account
+        </Link> 
+    );
+}
+
 function Header() {
+    const [currentUser, setCurrentUser] = useState(null);
+
+    const [{ user }, dispatch] = useStateValue();
+    const userEmail = user.email;
+
+    db.collection("users")
+        .doc(userEmail)
+        .onSnapshot((snapshot) => setCurrentUser(snapshot.data()));
+    
     return(
         <div className="HeaderContainer">
             <div className="row height100">
                 <div className="col-md-3 col-2 my-auto HeaderLogo text-center">
-                    <h1>LLearn!</h1>
+                    <h1>LassoLearn</h1>
                 </div>
                 <div className="col-md-6 col-8 my-auto">
                     <SearchBar />
                 </div>
                 <div className="col-md-3 col-2 my-auto AccountLink text-center">
-                    <Link to="/account">Account</Link> 
+                    <Linker user={currentUser} />
                 </div>
             </div>
         </div>

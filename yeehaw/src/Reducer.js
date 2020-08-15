@@ -1,5 +1,5 @@
 export const initialState = {
-	user: "random",
+	user: null,
 	search: ""
 };
 
