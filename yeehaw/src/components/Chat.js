@@ -6,17 +6,19 @@ import ChatInput from "./ChatInput";
 import "../styles/chatroom.css";
 
 function Chat() {
-
 	const { hostEmail } = useParams();
 	const [roomMessages, setRoomMessages] = useState([]);
 
 	useEffect(() => {
 		//changes every time room id changes
-		db.collection("users").doc(hostEmail).collection("messages").orderBy("date", "asc").onSnapshot((snapshot) =>
-			setRoomMessages(snapshot.docs.map((doc) => doc.data()))
-		)
-	}, [roomMessages, hostEmail]);
-
+		db.collection("users")
+			.doc(hostEmail)
+			.collection("messages")
+			.orderBy("date", "asc")
+			.onSnapshot((snapshot) =>
+				setRoomMessages(snapshot.docs.map((doc) => doc.data()))
+			);
+	}, [hostEmail]);
 
 	return (
 		<div className="chat">
@@ -24,7 +26,7 @@ function Chat() {
 				{roomMessages.map(({ message, date, profilePic, displayName }) => (
 					<Message
 						message={message}
-						data={date}
+						date={date}
 						displayName={displayName}
 						profilePic={profilePic}
 					/>

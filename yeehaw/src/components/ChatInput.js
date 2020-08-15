@@ -5,12 +5,12 @@ import db from "../firebase";
 import firebase from "firebase";
 
 function ChatInput({ id }) {
-
 	const [input, setInput] = useState("");
 	const [{ user }] = useStateValue();
 
 	const sendMessage = (e) => {
-		e.preventDefault()
+		e.preventDefault();
+
 		if (id) {
 			db.collection("users").doc(id).collection("messages").add({
 				message: input,

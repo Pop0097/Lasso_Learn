@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import "../styles/sidebar.css";
 import SidebarOption from "./SidebarOption";
 import db from "../firebase";
 
 function Sidebar() {
+	const [userRooms, setUserRooms] = useState([]);
 
-  const [userRooms, setUserRooms] = useState([])
-  useEffect(() => {
+	useEffect(() => {
+		//snapshot is an array of "users" collection
 		db.collection("users").onSnapshot((snapshot) => {
 			setUserRooms(
 				snapshot.docs.map((doc) => ({
