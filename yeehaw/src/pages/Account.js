@@ -42,7 +42,22 @@ function Account(props) {
 
 
     const sendRansom = () => {
-        alert("Ransom Sent");
+        var newVal1 = props.location.state.person.coins + 1;
+        var newVal2 = props.location.state.person.points + 10;
+        db.collection("users").doc(props.location.state.person.email).update({coins: newVal1, points: newVal2,});
+
+        var data;
+        var docRef = db.collection('users').doc(user.email).get().then(function(documentSnapshot) {
+            if(documentSnapshot.exists) {
+                data = documentSnapshot.data();
+
+                newVal1 = data.coins - 1;
+                db.collection("users").doc(user.email).update({coins: newVal1,});
+                alert("Ransom Paid!")
+            } else {
+                console.log("document not found");
+            }
+        })
     }
 
     //Check if user is present
