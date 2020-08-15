@@ -16,6 +16,7 @@ function Landing() {
 					type: "set_user",
 					user: result.user,
 				});
+				
 				//set database equal
 				db.collection("users").doc(result.user.email).set({
 					displayName: result.user.displayName,
@@ -30,6 +31,9 @@ function Landing() {
 				}).catch((error) => {
 					alert(error.message);
 			});
+			user.photoURL = db.collection("users").doc(result.user.email).get(
+				profilePicture
+				);
 		})
 	}
 

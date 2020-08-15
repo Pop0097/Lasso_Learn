@@ -52,6 +52,7 @@ function SearchBar() {
 function Linker({ user2 }){ //Link to the account page 
     const [{ user }, dispatch] = useStateValue();
     const userPic = user.photoURL;
+    console.log(user);
     return(
         <Link to={{
             pathname: '/account',
