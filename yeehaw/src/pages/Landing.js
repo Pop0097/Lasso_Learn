@@ -11,6 +11,7 @@ function Landing() {
 			.signInWithPopup(provider)
 			.then((result) => {
 				//set user in local statel
+				console.log(result.user)
 				dispatch({
 					type: "set_user",
 					user: result.user,
