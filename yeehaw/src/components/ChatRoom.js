@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import db from "../firebase";
-// import Message from "./Message";
-// import ChatInput from "./ChatInput";
-import "../styles/chat.css";
+import Message from "./Message";
+import ChatInput from "./ChatInput";
+
+import "../styles/chatroom.css";
 
 function Chat() {
 	const { hostEmail } = useParams();
-	const [roomDetails, setRoomDetails] = useState(null);
 	const [roomMessages, setRoomMessages] = useState([]);
 
 	useEffect(() => {
@@ -20,44 +20,24 @@ function Chat() {
 				.onSnapshot((snapshot) =>
 					setRoomMessages(snapshot.docs.map((doc) => doc.data()))
         );
-
-			db.collection("rooms")
-				.doc(roomId)
-				.onSnapshot((snapshot) => setRoomDetails(snapshot.data()));
 		}
-	}, [roomId]);
+	}, [hostEmail]);
 
 	return (
 		<div className="chat">
-			<div className="chat-header">
-				<div className="chat-headerLeft">
-					<h4 className="chat-channelName">
-						{/* "?" = optional chaining (instant try catch) */}
-						{/* sets to default value i.e. null if not there --> rather than breaking  */}
-						<strong>#{roomDetails?.name}</strong>
-						<StarBorderOutlinedIcon />
-					</h4>
-				</div>
-
-				<div className="chat-headerRight">
-					<p>
-						<InfoOutlinedIcon /> Details
-					</p>
-				</div>
-			</div>
 
 			<div className="chat-messages">
-				{roomMessages.map(({ message, timestamp, userImage, user }) => (
+				{roomMessages.map(({ message, date, profilePic, displayName }) => (
 					<Message
 						message={message}
-						timestamp={timestamp}
-						user={user}
-						userImage={userImage}
+						data={date}
+						displayName={displayName}
+						profilePic={profilePic}
 					/>
 				))}
 			</div>
 
-			<ChatInput channel={roomDetails?.name} channelId={roomId} />
+			<ChatInput room={roomDetails?.name} roomId={hostEmail} />
 		</div>
 	);
 }

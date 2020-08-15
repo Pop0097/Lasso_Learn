@@ -21,14 +21,14 @@ function Landing() {
 					displayName: result.user.displayName,
 					email: result.user.email,
 					profilePicture: result.user.photoURL,
-					coursesOffered: [],
-					desiredCourses: [],
-					numCoursesOffered: 0,
-					numCoursesDesired: 0,
+					coursesOffered: ["CSS", "HTML"],
+					desiredCourses: ["English"],
+					numCoursesOffered: 2,
+					numCoursesDesired: 1,
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
 				}, {merge: true}).then(function() {
-					alert(`${result.user.displayName} has logged in!`)
+					//alert(`${result.user.displayName} has logged in!`)
 				}).catch((error) => {
 				alert(error.message);
 			});

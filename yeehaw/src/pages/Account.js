@@ -1,26 +1,54 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/account.css';
 import '../styles/global.css';
 import { useHistory } from 'react-router-dom';
 import db from "../firebase";
 import { useStateValue } from "../StateProvider"; 
+import Modal from 'react-modal';
 
 function Account(props) {
     let history = useHistory();
+    const [{ user }, dispatch] = useStateValue();
+    const [desired, setDesired] = useState([]);
 
     const sendRansom = () => {
-        alert("cool B)");
+        alert("Ransom Sent");
     }
 
-    const displayCoursesOffered = () => {
-        
+    var isCurrentUser = "hidden";
+
+    if(user.email == props.location.state.person.email) {
+        //alert("User is current user");
+        isCurrentUser = "visible"; 
+    }
+    
+    
+    var desiredCourseList = "";
+    var courseList = "";
+
+    props.location.state.person.coursesOffered.map(( course ) => {
+        courseList = courseList.concat(course);
+        courseList = courseList.concat(", ");
+    });
+
+    props.location.state.person.desiredCourses.map(( course ) => {
+        desiredCourseList = desiredCourseList.concat(course);
+        desiredCourseList = desiredCourseList.concat(", ");
+    });
+
+    courseList = courseList.slice(0, -2);
+    desiredCourseList = desiredCourseList.slice(0, -2);
+    //console.log(courseList, desiredCourseList);
+
+    const editUser = () => {
+
     }
 
     return (
         <div className="AccountContainer">
             <div className="TopHalfContainer">
-                <div className="row height100 ToBottom">
+                <div className="row height100 ToBottom"> 
                     <div className="col-lg-4 col-12">
                         <div className="ProfileImageLarge center" >
                             <img src={props.location.state.person.profilePicture} id="profile-image-large" className="center"/>
@@ -30,6 +58,7 @@ function Account(props) {
                         <div id="name">
                             {props.location.state.person.displayName}
                         </div>
+                        <button onClick={editUser} style={{visibility: isCurrentUser}}>Edit Courses</button>
                     </div>
                 </div>
             </div>
@@ -76,7 +105,7 @@ function Account(props) {
                                     <h4>Up for Ransom: </h4>
                                 </div>
                                 <div className="col-6">
-                                    <p>{displayCoursesOffered}</p>
+                                    <p> {courseList} </p>
                                 </div>
                             </div>
                             <div className="row">
@@ -84,7 +113,7 @@ function Account(props) {
                                     <h4>Seeking: </h4>
                                 </div>
                                 <div className="col-6">
-                                    <p>{props.location.state.person.desiredCourses}</p> 
+                                    <p> {desiredCourseList}</p>
                                 </div>
                             </div>
                             <div className="row">
