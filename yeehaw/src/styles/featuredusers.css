@@ -45,6 +45,8 @@ a {
 
 .searchContainer{
     text-align: center;
-    width: 100%;
-    height: 100%;
+    width:100%;
+    background-image: url("../assets/default-bg.jpg");
+    background-repeat: repeat;
+	background-size: cover;
 }

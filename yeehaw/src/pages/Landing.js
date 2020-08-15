@@ -43,9 +43,9 @@ function Landing() {
 				}).catch((error) => {
 					alert(error.message);
 			});
-			user.photoURL = db.collection("users").doc(result.user.email).get(
-				profilePicture
-				);
+			// user.photoURL = db.collection("users").doc(result.user.email).get(
+			// 	profilePicture
+			// );
 		})
 	}
 
