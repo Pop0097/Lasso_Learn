@@ -9,6 +9,7 @@
     background: linear-gradient(0.25turn, rgba(249, 213,110), rgba(232, 89, 91)); 
     margin-top: 0;
     width: 100%;
+    padding-bottom: -40px;
 }
 
 #tempButton{
@@ -16,22 +17,27 @@
 }
 
 #name{
-    vertical-align: bottom;
-    text-align: left;
+    text-align: center;
     color: rgba(92, 69, 57, 1);
     font-family: Freakshow;
-    font-size: 60px;
+    font-size: 55px;
+    margin-top: 60px;
 }
 
-.ProfileImageLarge{
+@media (max-width: 992px){
+    #name{
+        text-align: center;
+    }
 }
 
 #profile-image-large{
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
+    width: 170px;
+    height: 170px;
+    border-radius: 85px;
     border: 1px solid black;
     z-index: 1;
+    vertical-align: middle;
+    margin-top: 10%;
 }
 
 .BottomHalfContainer{
@@ -52,20 +58,65 @@
     padding: 20px;
 }
 
-.TokenName, .TokenValue{
-    font-family: Freakshow;
-    color: rgba(92, 69, 57, 1);
-    font-size: 30px;
-    text-align: left;
+.TokenImage img {
+    margin-top: 50px;
+    height: 60px;
+    width: 60px;
 }
 
-.UserPreferences{
+.TokenName p{
+    margin-top: 50px;
+    font-family: Freakshow;
+    color: rgba(92, 69, 57, 1);
+    font-size: 40px;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.TokenValue p{
+    margin-top: 50px;
+    font-family: Freakshow;
+    font-size: 40px;
+    text-align: left; 
+    color: rgba(92, 69, 57, 1);
+}
+
+.UserPreferences {
     margin-top: 100px;
     width: 708px;
     height: 515px;
     background-image: url("../assets/paper-horizontal.png");
     background-repeat: no-repeat;
     background-size: cover; 
+    padding-top: 20px;
+}
+
+.ItemName p{
+    margin-top: 40px;
+    margin-left: 50px;
+    font-family: Freakshow;
+    color: rgba(92, 69, 57, 1);
+    font-size: 40px;
+    text-align: left;
+}
+
+.Criteria p{
+    margin-top: 40px;
+    font-family: Freakshow;
+    font-size: 40px;
+    text-align: left; 
+    color: rgba(92, 69, 57, 1);
+}
+
+button {
+    background-color: rgba(249, 213, 110, 1);
+    width: 450px;
+    border-radius: 10px;
+    height: 80px; 
+    color: rgba(92, 69, 57, 1);
+    font-size: 35px;
+    padding: 10px;
+    margin-top: 3px;
 }
 
 .height100{
@@ -80,4 +131,47 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
-  }
+}
+
+#instructions-title{
+    text-align: center;
+    font-size: 40px;
+    color: rgba(92, 69, 57, 1);
+    font-weight: 800;
+}
+
+#instructions{
+    text-align: center;
+    font-size: 24px;
+    color: rgba(92, 69, 57, 1);
+}
+
+.update-form{
+}
+
+.update-form h4 {
+    color: rgba(92, 69, 57, 1);
+    font-size: 40px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.update-form input {
+    width: 500px; 
+    height: 40px; 
+    font-size: 16px;
+    padding: 5px;
+    color: rgba(92, 69, 57, 1);
+    border-radius: 2px;
+}
+
+#update-button{
+    background-color: rgba(249, 213, 110, 1);
+    width: 500px;
+    border-radius: 10px;
+    height: 40px; 
+    color: rgba(92, 69, 57, 1);
+    font-size: 16px;
+    padding: 5px;
+    margin-top: 20px;
+}

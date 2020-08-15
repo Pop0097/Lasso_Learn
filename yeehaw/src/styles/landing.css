@@ -1,27 +1,82 @@
-.landing {
+h1{
+	color: rgba(63, 53, 48, 1);
+	font-size: 120px;
+}
+
+p{
+	margin: 20px 0 10px 0;
+}
+
+
+body{
+	background-image: none;
+}
+
+.landing{
 	height: 100vh;
-	background: #f8f8f8;
+	background: linear-gradient(180deg, rgba(232,80,91,1) 0%, rgba(249,213,110,1) 90%); 
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: fixed;
 	display: grid;
-  place-items: center; 
+	place-items: center; 
+}
+
+.footer {
+	background-image: url('../assets/landing-footer.png');
+	background-repeat: repeat-x;
+	background-size: contain;
+	background-position: center bottom;
+}
+
+#account-login{
+	background-color: rgba(232,80,91,1);
+}
+
+@font-face {
+  font-family: Jost;
+  src:url("../assets/Jost-Regular.ttf");
 }
 
 .landing-container {
 	padding: 100px;
 	text-align: center;
-	background-color: white;
 	border-radius: 10px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	font-family: Jost, sans-serif;
+	z-index:999;
 }
 
-.landing-container > img {
-	object-fit: contain;
-	height: 50px;
-	margin-bottom: 40px;
-}
-
-.landing-container > button {
-	margin-top: 50px;
-	text-transform: inherit !important;
-	background-color: #0a8d48 !important;
+.buttons {
+	font-size: min(3vw, 1.5rem);
+	padding: 1rem;
+	background-color: rgba(63, 53, 48, 1);
+	border-radius: 10px;
+	user-select: none;
 	color: white;
+	width: min(35vw, 420px);
 }
+
+.buttons:hover{
+	box-shadow: 0 0 5px;
+	cursor: pointer;
+}
+
+.buttons:active{
+	background-color:rgba(232,80,91,1);
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 225px;
+	z-index: 1;
+	color: white;
+	text-align: center;
+ }
+
+ #email-login{
+	 background-color: white;
+	 color: #3f3530;
+ }

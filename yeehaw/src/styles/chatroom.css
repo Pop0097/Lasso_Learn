@@ -3,4 +3,6 @@
 	flex-grow: 1;
 	overflow-y: scroll;
 	padding-bottom: 150px;
+	background-image: url("../assets/chat-bg.jpg");
+    background-attachment: fixed;
 }

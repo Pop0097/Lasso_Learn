@@ -4,9 +4,19 @@ a { text-decoration: none; }
     min-height: calc(100vh-60px);
 }
 
+.featured-users-container{
+    background-image: url("../assets/default-bg.jpg");
+    background-repeat: repeat;
+	background-size: cover;
+}
+
 #welcome-header{
     font-size: 35px;
     margin: 40px;
+}
+
+.wanted {
+    font-size: 3em;
 }
 
 hr {
@@ -22,7 +32,19 @@ hr {
     display: block;
 }
 
-body{
-    background-image: url("../assets/default-bg.jpg");
-    height: 100%;
+a {
+    color: honeydew;
   }
+
+#result-indication{
+    text-align: center;
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.searchContainer{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}

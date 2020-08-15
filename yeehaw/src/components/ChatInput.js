@@ -5,6 +5,7 @@ import db from "../firebase";
 import firebase from "firebase";
 
 function ChatInput({ id }) {
+
 	const [input, setInput] = useState("");
 	const [{ user }] = useStateValue();
 
@@ -13,7 +14,7 @@ function ChatInput({ id }) {
 		if (id) {
 			db.collection("users").doc(id).collection("messages").add({
 				message: input,
-				date: firebase.firestore.FieldValue.serverTimestamp(), // Uses consistent timestamp
+				date: firebase.firestore.FieldValue.serverTimestamp(),
 				displayName: user.displayName,
 				profilePic: user.photoURL,
 			});

@@ -4,6 +4,7 @@ import SidebarOption from "./SidebarOption";
 import db from "../firebase";
 
 function Sidebar() {
+
   const [userRooms, setUserRooms] = useState([])
   useEffect(() => {
 		db.collection("users").onSnapshot((snapshot) => {

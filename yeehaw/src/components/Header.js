@@ -18,7 +18,7 @@ const StyledLink = styled(Link)`
 
 function SearchBar() {
     const [input, setInput] = useState("");
-    const [{search}, dispatch] = useStateValue();
+    const [state, dispatch] = useStateValue();
     let history = useHistory();
 
     const onChange = (event) => {
@@ -50,9 +50,7 @@ function SearchBar() {
 }
 
 function Linker({ user2 }){ //Link to the account page 
-    const [{ user }, dispatch] = useStateValue();
-    const userPic = user.photoURL;
-    console.log(user);
+    const [{ userPic }, dispatch] = useStateValue();
     return(
         <Link to={{
             pathname: '/account',
