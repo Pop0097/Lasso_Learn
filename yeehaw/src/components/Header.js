@@ -49,7 +49,7 @@ function SearchBar() {
     );
 }
 
-function Linker({ user2 }){
+function Linker({ user2 }){ //Link to the account page 
     const [{ user }, dispatch] = useStateValue();
     const userPic = user.photoURL;
     return(

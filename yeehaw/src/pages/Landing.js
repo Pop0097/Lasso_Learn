@@ -28,7 +28,7 @@ function Landing() {
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
 				}, {merge: true}).then(function() {
-					alert(`${result.user.displayName} has logged in!`)
+						console.log(`${result.user.displayName} has logged in`)
 				}).catch((error) => {
 				alert(error.message);
 			});
