@@ -3,7 +3,7 @@ import "../styles/usercard.css";
 import '../styles/global.css';
 import { Link } from 'react-router-dom'
 
-function UserCard({user}) {
+function UserCard({ user }) {
 
   var courseList = "";
 

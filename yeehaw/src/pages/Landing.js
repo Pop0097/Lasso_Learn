@@ -6,12 +6,11 @@ import { useStateValue } from "../StateProvider";
 
 function Landing() {
 	const [state, dispatch] = useStateValue()
-	const signIn = () => {
+
+	const signIn = (e) => {
 		auth
 			.signInWithPopup(provider)
 			.then((result) => {
-				//set user in local state
-				console.log(result.user)
 				dispatch({
 					type: "set_user",
 					user: result.user,
@@ -27,8 +26,8 @@ function Landing() {
 					numCoursesDesired: 1,
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
-				}, {merge: true}).catch((error) => {
-						alert(error.message);
+				}).catch((error) => {
+					alert(error.message);
 			});
 		})
 	}

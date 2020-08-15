@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 
 function SidebarOption({ Icon, name, id }) {
 
-  const history = useHistory();
+	const history = useHistory();
+	
 	const selectRoom = () => {
 		if (id) {
 			history.push(`/userRoom/${id}`);

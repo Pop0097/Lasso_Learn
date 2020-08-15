@@ -9,8 +9,7 @@ function ChatInput({ id }) {
 	const [{ user }] = useStateValue();
 
 	const sendMessage = (e) => {
-		e.preventDefault();
-
+		e.preventDefault()
 		if (id) {
 			db.collection("users").doc(id).collection("messages").add({
 				message: input,

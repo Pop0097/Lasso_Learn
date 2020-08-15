@@ -10,6 +10,29 @@ import Modal from 'react-modal';
 var desiredCourseList = "";
 var courseList = "";
 
+function setDesiredList(props) {
+    desiredCourseList = "";
+
+    props.location.state.person.desiredCourses.map(( course ) => {
+        desiredCourseList = desiredCourseList.concat(course);
+        desiredCourseList = desiredCourseList.concat(", ");
+    });
+
+    desiredCourseList = desiredCourseList.slice(0, -2);
+
+}
+
+function setCourseList(props) {
+    courseList = "";
+
+    props.location.state.person.coursesOffered.map(( course ) => {
+        courseList = courseList.concat(course);
+        courseList = courseList.concat(", ");
+    });
+
+    courseList = courseList.slice(0, -2);
+}
+
 function Account(props) {
     let history = useHistory();
     const [{ user }, dispatch] = useStateValue();
@@ -31,50 +54,34 @@ function Account(props) {
     
     //Strings for courses offered/desired
 
-    const setCourseValues = () => {
-        props.location.state.person.coursesOffered.map(( course ) => {
-            courseList = courseList.concat(course);
-            courseList = courseList.concat(", ");
-        });
-
-        props.location.state.person.desiredCourses.map(( course ) => {
-            desiredCourseList = desiredCourseList.concat(course);
-            desiredCourseList = desiredCourseList.concat(", ");
-        });
-
-        courseList = courseList.slice(0, -2);
-        desiredCourseList = desiredCourseList.slice(0, -2);
-
-        console.log(desiredCourseList, courseList);
-    }
+    setCourseList(props);
+    setDesiredList(props);
 
     //Modal
     const openModal = () => {
         setOffered(courseList);
         setDesired(desiredCourseList);
+        console.log("Heww ", desiredC, offeredC);
 
         setIsOpen(true);
     }
 
-    const updateDesiredCourses = (event) => {
+    const updateCourses = (event) => {
         event.preventDefault();
 
+        desiredCourseList = desiredC;
         var desiredArray = desiredC.split(", ");
-        console.log(desiredArray);
+        db.collection("users").doc(props.location.state.person.email).update({desiredCourses: desiredArray, numCoursesDesired: desiredArray.length});
 
-        setIsOpen(false);
-    }
-
-    const updateOfferedCourses = (event) => {
-        event.preventDefault();
-
+        courseList = offeredC;
         var offeredArray = offeredC.split(", ");
         console.log(offeredArray);
-
-
-
+        db.collection("users").doc(props.location.state.person.email).update({coursesOffered: offeredArray, numCoursesOffered: offeredArray.length});
+        
         setIsOpen(false);
     }
+
+    const isInvalid1 = ((offeredC.split(", ").length < 2) || (offeredC.split(", ").length > 5) || offeredC.indexOf(", ") == -1) || ((desiredC.split(", ").length < 2) || (desiredC.split(", ").length > 5) || desiredC.indexOf(", ") == -1);  
 
     return (
         <div className="AccountContainer">
@@ -99,17 +106,13 @@ function Account(props) {
                 contentLabel="Edit Course Preferences"
             >
                 <p onClick={() => setIsOpen(false)}>Cancel</p>
-                <p> Instructions: Separate all courses with a comma and a space (ex. "CSS, HTML, JavaScript")</p>
-                <h4>Courses Offered (Ransom):</h4>
-                <form onSubmit={updateOfferedCourses}>
+                <p> Instructions: Separate all courses with a comma and a space (ex. "CSS, HTML, JavaScript"). You must have between 2-5 tags. </p>
+                <form onSubmit={updateCourses}>
+                    <h4>Courses Offered (Ransom):</h4><br />
                     <input type="text" name="offeredC" value={offeredC} onChange={(event) => setOffered(event.target.value)} /><br />
-                    <button type="submit">Update Ransom</button>
-                </form>
-
-                <h4>Courses Desired (Seeking):</h4>
-                <form onSubmit={updateDesiredCourses}>
+                    <h4>Courses Desired (Seeking):</h4><br />
                     <input type="text" name="desiredC" value={desiredC} onChange={(event) => setDesired(event.target.value)} /><br />
-                    <button type="submit">Update Seeking</button>
+                    <button disabled={isInvalid1} type="submit">Update</button>
                 </form>
             </Modal>
 
@@ -156,7 +159,7 @@ function Account(props) {
                                     <h4>Up for Ransom: </h4>
                                 </div>
                                 <div className="col-6">
-                                    <p> {courseList} </p>
+                                    <p> {offeredC} </p>
                                 </div>
                             </div>
                             <div className="row">
@@ -164,7 +167,7 @@ function Account(props) {
                                     <h4>Seeking: </h4>
                                 </div>
                                 <div className="col-6">
-                                    <p> {desiredCourseList}</p>
+                                    <p> {desiredC}</p>
                                 </div>
                             </div>
                             <div className="row">
