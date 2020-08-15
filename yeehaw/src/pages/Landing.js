@@ -27,10 +27,8 @@ function Landing() {
 					numCoursesDesired: 1,
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
-				}, {merge: true}).then(function() {
-						console.log(`${result.user.displayName} has logged in`)
-				}).catch((error) => {
-				alert(error.message);
+				}, {merge: true}).catch((error) => {
+						alert(error.message);
 			});
 		})
 	}
