@@ -14,8 +14,12 @@ function Search() {
     query.get().then(querySnapshot => {
         let docs = querySnapshot.docs;
         for(let doc of docs) {
-            console.log(doc.data());
-            
+            setSearchResults(prevSearchResults => {
+                return [
+                    doc.data(),
+                    ...prevSearchResults
+                ]
+            })
         }
     });
 
