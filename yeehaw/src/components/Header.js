@@ -4,6 +4,17 @@ import '../styles/header.css';
 import { useStateValue } from "../StateProvider";
 import { useHistory, Link } from 'react-router-dom';
 import db from "../firebase";
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: black;
+    }
+`;
 
 function SearchBar() {
     const [input, setInput] = useState("");
@@ -38,15 +49,17 @@ function SearchBar() {
     );
 }
 
-function Linker({ user }){
+function Linker({ user2 }){
+    const [{ user }, dispatch] = useStateValue();
+    const userPic = user.photoURL;
     return(
         <Link to={{
             pathname: '/account',
             state: {
-                person: user
+                person: user2
             }
-        }}> 
-            Account
+        }}>
+            <img src={userPic} alt="" id="profile-image-small" className="center"/> 
         </Link> 
     );
 }
@@ -65,13 +78,13 @@ function Header() {
         <div className="HeaderContainer">
             <div className="row height100">
                 <div className="col-md-3 col-2 my-auto HeaderLogo text-center">
-                    <h1>LassoLearn</h1>
+                    <h1> <StyledLink to="/">LassoLearn</StyledLink></h1>
                 </div>
                 <div className="col-md-6 col-8 my-auto">
                     <SearchBar />
                 </div>
                 <div className="col-md-3 col-2 my-auto AccountLink text-center">
-                    <Linker user={currentUser} />
+                    <Linker user2={currentUser} />
                 </div>
             </div>
         </div>

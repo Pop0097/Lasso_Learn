@@ -9,7 +9,7 @@ import Account from "./pages/Account";
 import Search from './pages/Search';
 import { useStateValue } from "./StateProvider";
 import Sidebar from "./components/Sidebar";
-// import ChatRoom from "./components/ChatRoom";
+import ChatRoom from "./components/ChatRoom";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -28,7 +28,7 @@ function App() {
               <Route path="/search" component={Search} />
               <Route path="/userRoom">
                   <Sidebar />
-                {/* <Route path="/userRoom/:hostEmail" component={ChatRoom}/> */}
+                  <Route path="/userRoom/:hostEmail" component={ChatRoom}/>
               </Route>
             </Switch>            
           </div>

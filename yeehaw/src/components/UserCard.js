@@ -4,6 +4,16 @@ import '../styles/global.css';
 import { Link } from 'react-router-dom'
 
 function UserCard({user}) {
+
+  var courseList = "";
+
+ user.coursesOffered.map(( course ) => {
+      courseList = courseList.concat(course);
+      courseList = courseList.concat(", ");
+  });
+
+  courseList = courseList.slice(0, -2);
+
   return(
     <Link to={{
       pathname: '/account',
@@ -16,7 +26,7 @@ function UserCard({user}) {
             <hr />
             <h2 className="username">{user.displayName}</h2>
             <img src={user.profilePicture} alt="" className="usercard-pic"/>
-            <p className="courses">For Ransom: ${}</p>
+            <p className="courses">For Ransom: {courseList}</p>
         </div>
     </Link>
   );
