@@ -5,6 +5,7 @@ import db, {provider, auth} from "../firebase";
 import { useStateValue } from "../StateProvider";
 
 function Landing() {
+	const avatars = loadAvatars();
 	const [state, dispatch] = useStateValue()
 
 	const signIn = (e) => {
@@ -19,7 +20,7 @@ function Landing() {
 				db.collection("users").doc(result.user.email).set({
 					displayName: result.user.displayName,
 					email: result.user.email,
-					profilePicture: result.user.photoURL,
+					profilePicture: avatars[Math.floor(Math.random()*6)],
 					coursesOffered: ["CSS", "HTML"],
 					desiredCourses: ["English", "French"],
 					numCoursesOffered: 2,
@@ -46,6 +47,16 @@ function Landing() {
 			</div>
     </div>
   )
+}
+
+function loadAvatars(){
+	let avatarAmt = 6;
+	let avatars = [];
+	for(let i=0; i<avatarAmt; i++){
+		avatars.push("../assets/avatars/avatar" + i + ".png");
+	}
+	console.log(avatars);
+	return avatars;
 }
 
 export default Landing;

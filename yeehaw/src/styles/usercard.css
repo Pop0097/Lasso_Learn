@@ -11,6 +11,11 @@
   height: min(40vw, 400px);
 }
 
+.usercard:hover{
+  text-shadow: -7px 7px 7px #3f3530;
+  text-decoration: none; 
+}
+
 .usercard * {
   margin: 0 auto;
 }

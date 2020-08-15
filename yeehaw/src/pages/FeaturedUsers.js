@@ -14,7 +14,7 @@ function FeaturedUsers() {
             setFeaturedUsers(
                 snapshot.docs.map((doc)=> doc.data()))
         })
-    }, [])
+    })
 
     return(
         <div className="featured-users">

@@ -1,3 +1,5 @@
+a { text-decoration: none; }
+
 .HomeContainer{
     min-height: calc(100vh-60px);
 }
