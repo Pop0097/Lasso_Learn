@@ -1,6 +1,7 @@
 export const initialState = {
 	user: null,
-	search: ""
+	search: "",
+	userPic: ""
 };
 
 const reducer = (state, action) => {
@@ -9,6 +10,7 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				user: action.user,
+				userPic: action.userPic
 			};
 		case "set_search":
 			return {

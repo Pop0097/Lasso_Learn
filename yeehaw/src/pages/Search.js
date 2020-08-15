@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useStateValue } from "../StateProvider";
-import { HomeLink } from './FeaturedUsers';
 import db from '../firebase';
 import UserCard from "../components/UserCard";
+import "../styles/featuredusers.css";
 
 function Search() {
     const [{search}, dispatch] = useStateValue();
@@ -25,9 +25,8 @@ function Search() {
     });
 
     return (
-        <div>
-            <HomeLink />
-            <h3>Results for "{ search }" </h3>
+        <div className="searchContainer">
+            <p id="result-indication">Results for "{ search }" </p>
             { searchResults.map((user) => (
                 <UserCard user={user} />
             ))}

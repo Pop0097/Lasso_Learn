@@ -15,9 +15,8 @@ function Chat() {
 		db.collection("users").doc(hostEmail).collection("messages").orderBy("date", "asc").onSnapshot((snapshot) =>
 			setRoomMessages(snapshot.docs.map((doc) => doc.data()))
 		)
-	}, [hostEmail]);
+	}, [roomMessages, hostEmail]);
 
-	console.log("room messages", roomMessages)
 
 	return (
 		<div className="chat">

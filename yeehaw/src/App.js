@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import Header from './components/Header';
 import FeaturedUsers from "./pages/FeaturedUsers"
 import Landing from "./pages/Landing"
@@ -28,7 +27,7 @@ function App() {
               <Route path="/search" component={Search} />
               <Route path="/userRoom">
               <Sidebar />
-                <Route path="/:hostEmail" component={ChatRoom}/>
+                <Route path="/userRoom/:hostEmail" component={ChatRoom}/>
               </Route>
             </Switch>            
           </div>
