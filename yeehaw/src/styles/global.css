@@ -1,0 +1,15 @@
+/*fonts, etc. styles that all pages use*/
+
+@font-face {
+  font-family: Freakshow;
+  src:url("../assets/Carnevalee_Freakshow.ttf");
+}
+
+body{
+  font-family: Freakshow, serif;
+}
+
+.row-flex{
+  display: flex;
+  flex-flow: row wrap;
+}

@@ -6,33 +6,33 @@ import { useStateValue } from "../StateProvider";
 import { useHistory } from 'react-router-dom';
 
 function Landing() {
-  // let history = useHistory();
-  const [{user}, dispatch] = useStateValue()
-  const signIn = (e) => {
+
+	const [state, dispatch] = useStateValue()
+	const signIn = (e) => {
 		auth
 			.signInWithPopup(provider)
 			.then((result) => {
+				//set user in local statel
 				dispatch({
 					type: "set_user",
 					user: result.user,
 				});
+				//set database equal
 				db.collection("users").doc(result.user.email).set({
 					displayName: result.user.displayName,
 					email: result.user.email,
 					proflePicture: result.user.photoURL,
-          coursesOffered: [],
-          desiredCourses: [],
+					coursesOffered: [],
+					desiredCourses: [],
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
 				}, {merge: true}).then(function() {
-          // history.push("/");
 					console.log("user added to database!")
-				})
-			})
-			.catch((error) => {
+				}).catch((error) => {
 				alert(error.message);
 			});
-  }
+		})
+	}
 
   return (
     <div className="landing">
@@ -50,4 +50,4 @@ function Landing() {
   )
 }
 
-export default Landing
+export default Landing;

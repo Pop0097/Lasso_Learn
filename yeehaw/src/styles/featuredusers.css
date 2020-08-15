@@ -19,3 +19,8 @@ hr {
     margin-right: auto;
     display: block;
 }
+
+body{
+    background-image: url("../assets/default-bg.jpg");
+    height: 100%;
+  }

@@ -1,7 +1,4 @@
-@font-face {
-    font-family: Freakshow;
-    src:url("../assets/Carnevalee_Freakshow.ttf");
-}
+
 
 .TopHalfContainer{
     min-height: calc(40vh - 60px);

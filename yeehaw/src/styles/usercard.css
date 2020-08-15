@@ -1,8 +1,17 @@
 .usercard {
-  display: flex;
-  color: gray;
+  color: #3f3530;
   margin-top: 30px;
   margin-bottom: 30px;
+  width: max(30vw, 300px);
+  background-image: url("../assets/paper.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
+
+.usercard-pic{
+  width: max(25vw, 200px);
+  height: max(25vw, 200px);
+}
+
 
 

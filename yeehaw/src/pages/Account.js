@@ -1,6 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/account.css';
+import '../styles/global.css';
 import { useStateValue } from "../StateProvider"; 
 import { useHistory } from 'react-router-dom';
 import db from "../firebase";
@@ -10,7 +11,7 @@ function Account() {
     const [{ user }, dispatch] = useStateValue();
     const userEmail = user.email;
 
-    const dbUser = db.collection("users").doc(userEmail).get();
+    //const dbUser = db.collection("users").doc(userEmail).get(); 
 
     return (
         <div className="AccountContainer">
@@ -40,7 +41,6 @@ function Account() {
                                     <p><b>Bounty: </b></p>
                                 </div>
                                 <div className="col-3 TokenValue">
-                                    <p><b>{dbUser.points}</b></p>
                                 </div>
                             </div>
                             <div className="row">
@@ -51,13 +51,12 @@ function Account() {
                                     <p><b>Gold: </b></p>
                                 </div>
                                 <div className="col-3 TokenValue">
-                                    <p><b>{dbUser.coins}</b></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-8">
-                        
+
                     </div>
                 </div>
             </div>
