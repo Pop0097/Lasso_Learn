@@ -53,7 +53,7 @@ function loadAvatars(){
 	let avatarAmt = 6;
 	let avatars = [];
 	for(let i=0; i<avatarAmt; i++){
-		avatars.push("../assets/avatars/avatar" + i + ".png");
+		avatars.push("/avatars/avatar" + i + ".png");
 	}
 	console.log(avatars);
 	return avatars;
