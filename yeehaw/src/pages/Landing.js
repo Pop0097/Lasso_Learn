@@ -10,7 +10,7 @@ function Landing() {
 		auth
 			.signInWithPopup(provider)
 			.then((result) => {
-				//set user in local statel
+				//set user in local state
 				console.log(result.user)
 				dispatch({
 					type: "set_user",
@@ -28,7 +28,7 @@ function Landing() {
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
 				}, {merge: true}).then(function() {
-					//alert(`${result.user.displayName} has logged in!`)
+					alert(`${result.user.displayName} has logged in!`)
 				}).catch((error) => {
 				alert(error.message);
 			});
