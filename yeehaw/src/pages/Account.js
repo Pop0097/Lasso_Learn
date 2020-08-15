@@ -10,6 +10,17 @@ import Modal from 'react-modal';
 var desiredCourseList = "";
 var courseList = "";
 
+function setCourseList(props) {
+    courseList = "";
+
+    props.location.state.person.coursesOffered.map(( course ) => {
+        courseList = courseList.concat(course);
+        courseList = courseList.concat(", ");
+    });
+
+    courseList = courseList.slice(0, -2);
+}
+
 function setDesiredList(props) {
     desiredCourseList = "";
 
@@ -20,17 +31,6 @@ function setDesiredList(props) {
 
     desiredCourseList = desiredCourseList.slice(0, -2);
 
-}
-
-function setCourseList(props) {
-    courseList = "";
-
-    props.location.state.person.coursesOffered.map(( course ) => {
-        courseList = courseList.concat(course);
-        courseList = courseList.concat(", ");
-    });
-
-    courseList = courseList.slice(0, -2);
 }
 
 function Account(props) {

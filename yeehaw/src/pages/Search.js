@@ -1,28 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useStateValue } from "../StateProvider";
 import { HomeLink } from './FeaturedUsers';
-
-function ResultsTable() {
-    /* Call to the firestore database with the searched term to pull up results */
-    const [{search}, dispatch] = useStateValue();
-
-    return(
-        <div>
-            <p> Results Table! </p>
-        </div>
-    );
-}
+import db from '../firebase';
+import UserCard from "../components/UserCard";
 
 function Search() {
     const [{search}, dispatch] = useStateValue();
+    const [searchResults, setSearchResults] = useState([]);
+
+    var userRef = db.collection("users");
+    var query = userRef.where("coursesOffered", "array-contains", search);
+    
+    query.get().then(querySnapshot => {
+        let docs = querySnapshot.docs;
+        for(let doc of docs) {
+            console.log(doc.data());
+            
+        }
+    });
 
     return (
         <div>
             <HomeLink />
             <h3>Results for "{ search }" </h3>
-            <ResultsTable/>
+            { searchResults.map((user) => (
+                <UserCard user={user} />
+            ))}
         </div>
-    )
+    );
 }
 
 export default Search

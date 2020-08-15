@@ -21,9 +21,9 @@ function Landing() {
 					email: result.user.email,
 					profilePicture: result.user.photoURL,
 					coursesOffered: ["CSS", "HTML"],
-					desiredCourses: ["English"],
+					desiredCourses: ["English", "French"],
 					numCoursesOffered: 2,
-					numCoursesDesired: 1,
+					numCoursesDesired: 2,
 					points: 20, //points and coins will be reset if we keep this code
 					coins: 60
 				}).catch((error) => {

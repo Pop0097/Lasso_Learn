@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 
 function UserCard({ user }) {
 
-  var courseList = "";
+ let courseList = "";
 
- user.coursesOffered.map(( course ) => {
+ /*user.coursesOffered.map(( course ) => {
       courseList = courseList.concat(course);
       courseList = courseList.concat(", ");
-  });
+  });*/
 
   courseList = courseList.slice(0, -2);
 
