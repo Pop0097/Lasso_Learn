@@ -24,8 +24,8 @@ function Landing() {
 					desiredCourses: ["English", "French"],
 					numCoursesOffered: 2,
 					numCoursesDesired: 2,
-					points: 20, //points and coins will be reset if we keep this code
-					coins: 60
+					points: 0, //points and coins will be reset if we keep this code
+					coins: 20,
 				}).catch((error) => {
 					alert(error.message);
 			});

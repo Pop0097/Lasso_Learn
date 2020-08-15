@@ -9,11 +9,12 @@ function Search() {
     const [searchResults, setSearchResults] = useState([]);
 
     var userRef = db.collection("users");
-    var query = userRef.where("coursesOffered", "array-contains", search);
+    var query = userRef.where("coursesOffered", "array-contains", search).limit(10);
     
     query.get().then(querySnapshot => {
         let docs = querySnapshot.docs;
         for(let doc of docs) {
+            console.log("Here");
             setSearchResults(prevSearchResults => {
                 return [
                     doc.data(),

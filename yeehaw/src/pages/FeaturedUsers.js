@@ -10,10 +10,10 @@ function FeaturedUsers() {
     
     const [featuredUsers, setFeaturedUsers] = useState([])
     useEffect(() => {
-        db.collection("users").onSnapshot((snapshot) => {
+        db.collection("users").onSnapshot((snapshot) =>
             setFeaturedUsers(
                 snapshot.docs.map((doc)=> doc.data()))
-        })
+        )
     }, [])
 
     return(
