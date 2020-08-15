@@ -40,12 +40,10 @@ function SearchBar() {
     const isInvalid = input === '';
 
     return (
-        <div className="SearchBar">
-            <form className="SearchForm center" onSubmit={onSubmit}>
-                <input name="input" type="text" value={input} onChange={onChange} id="search-input" placeHolder="Search for a Course!" />
-                <button disabled={isInvalid} id="submit-button" type="submit"> Go </button>
-            </form>
-        </div>
+        <form className="SearchForm center" onSubmit={onSubmit}>
+            <input name="input" type="text" value={input} onChange={onChange} id="search-input" placeHolder="Search for a Course!" />
+            <button id="submit-button" type="submit">Search</button>
+        </form>
     );
 }
 
