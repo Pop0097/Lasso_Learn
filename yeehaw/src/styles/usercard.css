@@ -12,7 +12,7 @@
 }
 
 .usercard:hover{
-
+ text-decoration: none; 
 }
 
 .usercard * {

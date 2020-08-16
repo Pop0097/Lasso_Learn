@@ -1,15 +1,11 @@
-a {
-	text-decoration: none;
-}
-
-.HomeContainer {
-	min-height: calc(100vh-60px);
-}
-
-.featured-users-container {
+html{
+	height: 100%;
 	background-image: url("../assets/default-bg.jpg");
 	background-repeat: repeat;
-	background-size: cover;
+}
+
+body{
+	background-color: transparent;
 }
 
 #welcome-header {
@@ -32,10 +28,6 @@ hr {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-}
-
-a {
-	color: honeydew;
 }
 
 #result-indication {
