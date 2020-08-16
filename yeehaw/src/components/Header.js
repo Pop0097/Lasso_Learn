@@ -75,7 +75,7 @@ function Header() {
 						to={{
 							pathname: "/account",
 							state: {
-								person: currentUser,
+								user: currentUser,
 							},
 						}}
 					>
