@@ -1,6 +1,7 @@
 # LassoLearn
 
 A revolutionary platform for users to connect in one-on-one discussions to teach and/or learn new skills! Built using React JS and Firebase.
+View project demo: https://www.youtube.com/watch?time_continue=117&v=TE_L7q1bBag&feature=emb_title
 
 # Deploying the Project
 
