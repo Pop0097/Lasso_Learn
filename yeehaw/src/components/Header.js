@@ -6,7 +6,6 @@ import { useHistory, Link } from "react-router-dom";
 import db from "../firebase";
 import styled from "styled-components";
 
-//style "Lasso Learn"
 const StyledLink = styled(Link)`
 	text-decoration: none;
 	color: black;
@@ -34,7 +33,6 @@ function Header() {
 	const onSubmit = (event) => {
 		event.preventDefault();
 
-		//update search in local state
 		dispatch({
 			type: "set_search",
 			search_value: input,
@@ -44,10 +42,9 @@ function Header() {
 		history.push("/search");
 	};
 
-	//grab current user from database
-	db.collection("users")
-		.doc(userEmail)
-		.onSnapshot((snapshot) => setCurrentUser(snapshot.data()));
+	// db.collection("users")
+	// 	.doc(userEmail)
+	// 	.onSnapshot((snapshot) => setCurrentUser(snapshot.data()));
 
 	return (
 		<div className="HeaderContainer">
@@ -59,7 +56,6 @@ function Header() {
 					</h1>
 				</div>
 				<div className="col-md-6 col-8 my-auto">
-					{/* Searchbar */}
 					<form className="SearchForm center" onSubmit={onSubmit}>
 						<input
 							name="input"
@@ -75,7 +71,7 @@ function Header() {
 					</form>
 				</div>
 				<div className="col-md-3 col-2 my-auto AccountLink text-center">
-					<Link
+					{/* <Link
 						to={{
 							pathname: "/account",
 							state: {
@@ -89,8 +85,7 @@ function Header() {
 							id="profile-image-small"
 							className="center"
 						/>
-					</Link>
-					{/* <Linker user2={currentUser} /> */}
+					</Link> */}
 				</div>
 			</div>
 		</div>

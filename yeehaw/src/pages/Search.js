@@ -6,29 +6,29 @@ import "../styles/featuredusers.css";
 import "../styles/global.css";
 
 function Search() {
-	// const [{ search }, dispatch] = useStateValue();
-	// const [searchResults, setSearchResults] = useState([]);
+	const [{ search }, dispatch] = useStateValue();
+	const [searchResults, setSearchResults] = useState([]);
 
-	// var userRef = db.collection("users");
-	// var query = userRef
-	// 	.where("coursesOffered", "array-contains", search)
-	// 	.limit(10);
+	var userRef = db.collection("users");
+	var query = userRef
+		.where("coursesOffered", "array-contains", search)
+		.limit(10);
 
-	// useEffect(() => {
-	// 	query.onSnapshot((snapshot) =>
-	// 		setSearchResults(snapshot.docs.map((doc) => doc.data()))
-	// 	);
-	// }, [searchResults]);
+	//Retrieve all users that fit "search" criteria
+	useEffect(() => {
+		query.onSnapshot((snapshot) =>
+			setSearchResults(snapshot.docs.map((doc) => doc.data()))
+		);
+	}, [searchResults]);
 
 	return (
 		<div className="searchContainer">
-			<h1>Hi</h1>
-			{/* <p id="result-indication">Results for "{search}" </p>
+			<p id="result-indication">Results for "{search}" </p>
 			<div className="row-flex">
 				{searchResults.map((user) => (
 					<UserCard user={user} />
 				))}
-			</div> */}
+			</div>
 		</div>
 	);
 }
