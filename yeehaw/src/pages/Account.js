@@ -13,13 +13,13 @@ function Account(props) {
 	const [desiredC, setDesired] = useState("English, French");
 	const [offeredC, setOffered] = useState("HTML, CSS");
 
-	user = props.location.state.person;
+	fbUser = props.location.state.person;
 	var desiredCourseList = "HTML, CSS";
 	var courseList = "English, French";
 
 	function setCourseList(props) {
 		courseList = "";
-		user.coursesOffered.map((course) => {
+		fbUser.coursesOffered.map((course) => {
 			courseList = courseList.concat(course);
 			courseList = courseList.concat(", ");
 		});
@@ -30,7 +30,7 @@ function Account(props) {
 	function setDesiredList(props) {
 		desiredCourseList = "";
 
-		user.desiredCourses.map((course) => {
+		fbUser.desiredCourses.map((course) => {
 			desiredCourseList = desiredCourseList.concat(course);
 			desiredCourseList = desiredCourseList.concat(", ");
 		});
@@ -38,29 +38,47 @@ function Account(props) {
 	}
 
 	const Action = () => {
-		//
 		if (act == 1) {
-			var newVal1 = user.coins + 1;
-			var newVal2 = user.points + 10;
 			db.collection("users")
-				.doc(user.email)
-				.update({ coins: newVal1, points: newVal2 });
-
-			var data;
-			db.collection("users")
-				.doc(user.email)
-				.get()
-				.then(function (documentSnapshot) {
-					if (documentSnapshot.exists) {
-						data = documentSnapshot.data();
-
-						newVal1 = data.coins - 1;
-						db.collection("users").doc(user.email).update({ coins: newVal1 });
-						alert("Ransom Paid!");
-					} else {
-						console.log("document not found");
-					}
+				.doc(fbUser.email)
+				.update({ 
+					coins: firebase.firestore.FieldValue.increment(1), 
+					points: firebase.firestore.FieldValue.increment(10), 
 				});
+
+			// db.collection("users")
+			// 	.doc(user.email)
+			// 	.get()
+			// 	.then(function (documentSnapshot) {
+			// 		if (documentSnapshot.exists) {
+			// 			data = documentSnapshot.data();
+
+			// 			newVal1 = data.coins - 1;
+			// 			db.collection("users").doc(user.email).update({ coins: newVal1 });
+			// 			alert("Ransom Paid!");
+			// 		} else {
+			// 			console.log("document not found");
+			// 		}
+			// 	});
+			
+			//Proposed fix 1
+
+			// var data;
+			// db.collection("users")
+			// 	.doc(user.email)
+			// 	.get()
+			// 	.then(function (documentSnapshot) {
+			// 		data = documentSnapshot.data();
+			// 	});
+
+			// newVal1 = data.coins - 1;
+			// db.collection("users").doc(user.email).update({ coins: newVal1 });
+			// alert("Ransom Paid!");
+
+			//Best fix 
+			db.collection('users').doc(user.email).update({
+				coins: firebase.firestore.FieldValue.increment(-1),
+			});
 		} else {
 			setOffered(courseList);
 			setDesired(desiredCourseList);
@@ -74,7 +92,7 @@ function Account(props) {
 	var buttonString = "Send Ransom";
 	var act = 1;
 
-	if (user.email == user.email) {
+	if (user.email == fbUser.email) {
 		buttonString = "Edit Course Preferences";
 		act = 2;
 	}
@@ -93,12 +111,9 @@ function Account(props) {
 		courseList = offeredC;
 		var offeredArray = offeredC.split(", ");
 
-		db.collection("users").doc(user.email).update({
+		db.collection("users").doc(fbUser.email).update({
 			desiredCourses: desiredArray,
 			numCoursesDesired: desiredArray.length,
-		});
-		console.log(offeredArray);
-		db.collection("users").doc(user.email).update({
 			coursesOffered: offeredArray,
 			numCoursesOffered: offeredArray.length,
 		});
@@ -121,14 +136,14 @@ function Account(props) {
 					<div className="col-lg-4 my-auto col-12">
 						<div className="ProfileImageLarge center">
 							<img
-								src={user.profilePicture}
+								src={fbUser.profilePicture}
 								id="profile-image-large"
 								className="center"
 							/>
 						</div>
 					</div>
 					<div className="col-lg-8 my-auto col-12 ToBottom height100">
-						<div id="name">{user.displayName}</div>
+						<div id="name">{fbUser.displayName}</div>
 					</div>
 				</div>
 			</div>
@@ -213,7 +228,7 @@ function Account(props) {
 								</div>
 								<div className="col-7 TokenValue">
 									<p>
-										<b>{user.points} </b>
+										<b>{fbUser.points} </b>
 									</p>
 								</div>
 							</div>
@@ -223,7 +238,7 @@ function Account(props) {
 								</div>
 								<div className="col-7 TokenValue">
 									<p>
-										<b>{user.coins} </b>
+										<b>{fbUser.coins} </b>
 									</p>
 								</div>
 							</div>
