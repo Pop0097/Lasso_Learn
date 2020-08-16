@@ -33,11 +33,6 @@ body{
 	background-color: rgba(232,80,91,1);
 }
 
-@font-face {
-  font-family: Jost;
-  src:url("../assets/Jost-Regular.ttf");
-}
-
 .landing-container {
 	padding: 100px;
 	text-align: center;

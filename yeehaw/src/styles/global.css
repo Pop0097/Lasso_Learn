@@ -1,19 +1,20 @@
 /*fonts, etc. styles that all pages use*/
 
+
+@font-face {
+  font-family: Jost;
+  src:url("../assets/Jost-Regular.ttf");
+}
+
 @font-face {
 	font-family: Freakshow;
 	src: url("../assets/Carnevalee_Freakshow.ttf");
 }
 
-body {
-	font-family: Freakshow;
-	overflow: auto;
-}
 
-.row-flex {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
+body{
+  font-family: Freakshow;
+  overflow: auto;
 }
 
 .buttons {
@@ -25,3 +26,4 @@ body {
 	color: white;
 	width: min(35vw, 420px);
 }
+
