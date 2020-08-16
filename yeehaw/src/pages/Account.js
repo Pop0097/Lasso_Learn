@@ -7,61 +7,78 @@ import db from "../firebase";
 import { useStateValue } from "../StateProvider";
 import Modal from "react-modal";
 
-var desiredCourseList = "HTML, CSS";
-var courseList = "English, French";
-
-function setCourseList(props) {
-	courseList = "";
-	props.location.state.person.coursesOffered.map((course) => {
-		courseList = courseList.concat(course);
-		courseList = courseList.concat(", ");
-	});
-
-	courseList = courseList.slice(0, -2);
-}
-
-function setDesiredList(props) {
-	desiredCourseList = "";
-
-	props.location.state.person.desiredCourses.map((course) => {
-		desiredCourseList = desiredCourseList.concat(course);
-		desiredCourseList = desiredCourseList.concat(", ");
-	});
-
-	desiredCourseList = desiredCourseList.slice(0, -2);
-}
-
 function Account(props) {
-	let history = useHistory();
 	const [{ user }, dispatch] = useStateValue();
 	const [modalIsOpen, setIsOpen] = useState(false);
 	const [desiredC, setDesired] = useState("English, French");
 	const [offeredC, setOffered] = useState("HTML, CSS");
 
+	fbUser = props.location.state.person;
+	var desiredCourseList = "HTML, CSS";
+	var courseList = "English, French";
+
+	function setCourseList(props) {
+		courseList = "";
+		fbUser.coursesOffered.map((course) => {
+			courseList = courseList.concat(course);
+			courseList = courseList.concat(", ");
+		});
+
+		courseList = courseList.slice(0, -2);
+	}
+
+	function setDesiredList(props) {
+		desiredCourseList = "";
+
+		fbUser.desiredCourses.map((course) => {
+			desiredCourseList = desiredCourseList.concat(course);
+			desiredCourseList = desiredCourseList.concat(", ");
+		});
+		desiredCourseList = desiredCourseList.slice(0, -2);
+	}
+
 	const Action = () => {
 		if (act == 1) {
-			var newVal1 = props.location.state.person.coins + 1;
-			var newVal2 = props.location.state.person.points + 10;
 			db.collection("users")
-				.doc(props.location.state.person.email)
-				.update({ coins: newVal1, points: newVal2 });
-
-			var data;
-			var docRef = db
-				.collection("users")
-				.doc(user.email)
-				.get()
-				.then(function (documentSnapshot) {
-					if (documentSnapshot.exists) {
-						data = documentSnapshot.data();
-
-						newVal1 = data.coins - 1;
-						db.collection("users").doc(user.email).update({ coins: newVal1 });
-						alert("Ransom Paid!");
-					} else {
-						console.log("document not found");
-					}
+				.doc(fbUser.email)
+				.update({ 
+					coins: firebase.firestore.FieldValue.increment(1), 
+					points: firebase.firestore.FieldValue.increment(10), 
 				});
+
+			// db.collection("users")
+			// 	.doc(user.email)
+			// 	.get()
+			// 	.then(function (documentSnapshot) {
+			// 		if (documentSnapshot.exists) {
+			// 			data = documentSnapshot.data();
+
+			// 			newVal1 = data.coins - 1;
+			// 			db.collection("users").doc(user.email).update({ coins: newVal1 });
+			// 			alert("Ransom Paid!");
+			// 		} else {
+			// 			console.log("document not found");
+			// 		}
+			// 	});
+			
+			//Proposed fix 1
+
+			// var data;
+			// db.collection("users")
+			// 	.doc(user.email)
+			// 	.get()
+			// 	.then(function (documentSnapshot) {
+			// 		data = documentSnapshot.data();
+			// 	});
+
+			// newVal1 = data.coins - 1;
+			// db.collection("users").doc(user.email).update({ coins: newVal1 });
+			// alert("Ransom Paid!");
+
+			//Best fix 
+			db.collection('users').doc(user.email).update({
+				coins: firebase.firestore.FieldValue.increment(-1),
+			});
 		} else {
 			setOffered(courseList);
 			setDesired(desiredCourseList);
@@ -75,7 +92,7 @@ function Account(props) {
 	var buttonString = "Send Ransom";
 	var act = 1;
 
-	if (user.email == props.location.state.person.email) {
+	if (user.email == fbUser.email) {
 		buttonString = "Edit Course Preferences";
 		act = 2;
 	}
@@ -91,22 +108,15 @@ function Account(props) {
 
 		desiredCourseList = desiredC;
 		var desiredArray = desiredC.split(", ");
-		db.collection("users")
-			.doc(props.location.state.person.email)
-			.update({
-				desiredCourses: desiredArray,
-				numCoursesDesired: desiredArray.length,
-			});
-
 		courseList = offeredC;
 		var offeredArray = offeredC.split(", ");
-		console.log(offeredArray);
-		db.collection("users")
-			.doc(props.location.state.person.email)
-			.update({
-				coursesOffered: offeredArray,
-				numCoursesOffered: offeredArray.length,
-			});
+
+		db.collection("users").doc(fbUser.email).update({
+			desiredCourses: desiredArray,
+			numCoursesDesired: desiredArray.length,
+			coursesOffered: offeredArray,
+			numCoursesOffered: offeredArray.length,
+		});
 
 		setIsOpen(false);
 	};
@@ -126,14 +136,14 @@ function Account(props) {
 					<div className="col-lg-4 my-auto col-12">
 						<div className="ProfileImageLarge center">
 							<img
-								src={props.location.state.person.profilePicture}
+								src={fbUser.profilePicture}
 								id="profile-image-large"
 								className="center"
 							/>
 						</div>
 					</div>
 					<div className="col-lg-8 my-auto col-12 ToBottom height100">
-						<div id="name">{props.location.state.person.displayName}</div>
+						<div id="name">{fbUser.displayName}</div>
 					</div>
 				</div>
 			</div>
@@ -218,7 +228,7 @@ function Account(props) {
 								</div>
 								<div className="col-7 TokenValue">
 									<p>
-										<b>{props.location.state.person.points} </b>
+										<b>{fbUser.points} </b>
 									</p>
 								</div>
 							</div>
@@ -228,7 +238,7 @@ function Account(props) {
 								</div>
 								<div className="col-7 TokenValue">
 									<p>
-										<b>{props.location.state.person.coins} </b>
+										<b>{fbUser.coins} </b>
 									</p>
 								</div>
 							</div>
