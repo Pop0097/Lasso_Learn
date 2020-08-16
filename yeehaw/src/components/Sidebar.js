@@ -22,8 +22,9 @@ function Sidebar() {
 		<div className="sidebar">
 			{userRooms.map((userRoom) => (
 				<div>
-				<SidebarOption name={userRoom.name} id={userRoom.id} />
-				<hr /></div>
+					<SidebarOption name={userRoom.name} id={userRoom.id} />
+					<hr />
+				</div>
 			))}
 		</div>
 	);
