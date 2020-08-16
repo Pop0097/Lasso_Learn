@@ -21,10 +21,10 @@ const StyledLink = styled(Link)`
 
 function Header() {
 	const [input, setInput] = useState("");
-	const [currentUser, setCurrentUser] = useState(null);
 	const [{ user, userPic }, dispatch] = useStateValue();
-
 	let history = useHistory();
+
+	console.log("Header");
 
 	const onChange = (event) => {
 		setInput(event.target.value);
@@ -45,7 +45,7 @@ function Header() {
 	return (
 		<div className="HeaderContainer">
 			<div className="row height100">
-				<div className="col-md-3 col-2 my-auto HeaderLogo text-center">
+				<div className="col-md-2 col-2 my-auto HeaderLogo text-center">
 					<h1>
 						{" "}
 						<StyledLink to="/">LassoLearn</StyledLink>
@@ -66,22 +66,22 @@ function Header() {
 						</button>
 					</form>
 				</div>
-				<div className="col-md-3 col-2 my-auto AccountLink text-center">
-					{/* <Link
+				<div className="col-md-2 col-2 my-auto AccountLink text-center">
+					<Link
 						to={{
 							pathname: "/account",
 							state: {
-								user: user.email,
+								person: user.email,
 							},
 						}}
-					> */}
-					<img
-						src={userPic}
-						alt=""
-						id="profile-image-small"
-						className="center"
-					/>
-					{/* </Link> */}
+					>
+						<img
+							src={userPic}
+							alt=""
+							id="profile-image-small"
+							className="center"
+						/>
+					</Link>
 				</div>
 			</div>
 		</div>

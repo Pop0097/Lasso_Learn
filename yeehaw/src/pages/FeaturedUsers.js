@@ -19,7 +19,7 @@ function FeaturedUsers() {
 			<div className="featured-users-container row-flex">
 				{/* add key to each map child*/}
 				{featuredUsers.map((user) => (
-					<UserCard key={user.email} user={user} />
+					<UserCard user={user} />
 				))}
 			</div>
 		</div>

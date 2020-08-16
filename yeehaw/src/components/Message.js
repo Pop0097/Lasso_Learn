@@ -13,7 +13,7 @@ function Message({ message, date, displayName, profilePic }) {
 					</span>
 				</h4>
 				<p>{message}</p>
-				<hr className="bar-hr"/>
+				<hr className="bar-hr" />
 			</div>
 		</div>
 	);

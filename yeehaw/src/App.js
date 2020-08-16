@@ -23,13 +23,13 @@ function App() {
 						<div className="app-body">
 							<Switch>
 								<Route exact path="/" component={FeaturedUsers} />
-								{/* <Route path="/account" component={Account} /> */}
 								<Route path="/search" component={Search} />
+								<Route path="/account" component={Account} />
 								<Route path="/userRoom">
 									<div className="row-flex">
-									<Sidebar />
-									<Route path="/userRoom/:hostEmail" component={Chat} />
-									</div>									
+										<Sidebar />
+										<Route path="/userRoom/:hostEmail" component={Chat} />
+									</div>
 								</Route>
 							</Switch>
 						</div>

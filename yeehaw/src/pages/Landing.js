@@ -35,7 +35,6 @@ function Landing() {
 					points: 0,
 					coins: 20,
 				})
-				//add user to local database
 				.then(() => {
 					console.log(result.user);
 					dispatch({

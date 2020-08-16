@@ -2,49 +2,64 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "../styles/account.css";
 // import "../styles/global.css";
-// import { useHistory } from "react-router-dom";
 // import db from "../firebase";
 // import { useStateValue } from "../StateProvider";
 // import Modal from "react-modal";
+// import { initializeApp } from "firebase";
 
 // function Account(props) {
 // 	const [{ user }, dispatch] = useStateValue();
 // 	const [modalIsOpen, setIsOpen] = useState(false);
 // 	const [desiredC, setDesired] = useState("English, French");
 // 	const [offeredC, setOffered] = useState("HTML, CSS");
+//     //const [fbUser, setFbUser] = useState();
 
-// 	useEffect(() => {
-// 		if (props.location.state.user === user.email) {
-// 			// **query database for current user and set that equal to fb user
+// 	//Check if user is present
+// 	var buttonString = "Send Ransom";
+// 	var act = 1;
+// 	let fbUser;
+
+// 	console.log("1 ", props.location.state.person);
+// 	console.log("2 ", user.email);
+
+// 	// async function init() {
+// 	// 	if (props.location.state.person === user.email) {
+// 	// 		console.log("Current User");
+// 	// 		db.collection("users")
+// 	// 			.doc(user.email)
+// 	// 			.onSnapshot((snapshot) => setFbUser(snapshot.data()));
+// 	// 		buttonString = "Edit Course Preferences";
+// 	// 		act = 2;
+// 	// 	} else {
+// 	// 		console.log("NOT Current User");
+// 	// 		setFbUser(props.location.state.person);
+// 	// 	}
+// 	// }
+
+// 	async function init() {
+// 		if (props.location.state.person === user.email) {
+// 			console.log("Current User");
+// 			db.collection("users")
+// 				.doc(user.email)
+// 				.onSnapshot((snapshot) => {
+// 					fbUser = snapshot.data();
+// 				});
+// 			buttonString = "Edit Course Preferences";
+// 			act = 2;
+// 			return fbUser;
 // 		} else {
-// 			let fbUser = props.location.state.user;
+// 			fbUser = props.location.state.person;
+// 			return fbUser;
 // 		}
-// 	}, []);
-
-// 	var desiredCourseList = "HTML, CSS";
-// 	var courseList = "English, French";
-
-// 	function setCourseList(props) {
-// 		courseList = "";
-// 		fbUser.coursesOffered.map((course) => {
-// 			courseList = courseList.concat(course);
-// 			courseList = courseList.concat(", ");
-// 		});
-
-// 		courseList = courseList.slice(0, -2);
 // 	}
 
-// 	function setDesiredList(props) {
-// 		desiredCourseList = "";
+// 	useEffect(() => {
+// 		init().then((result) => {
+// 			fbUser = result;
+// 		});
+// 	}, []);
 
-// const Action = () => {
-// 	if (act == 1) {
-// 		db.collection("users")
-// 			.doc(fbUser.email)
-// 			.update({
-// 				coins: db.FieldValue.increment(1),
-// 				points: db.FieldValue.increment(10),
-// 			});
+// 	console.log("3 ", fbUser);
 
 // 	const Action = () => {
 // 		if (act == 1) {
@@ -69,27 +84,28 @@
 // 		}
 // 	};
 
-// 	//Check if user is present
-// 	var buttonString = "Send Ransom";
-// 	var act = 1;
+// 	//Set strings
+// 	var desiredCourseList = "HTML, CSS";
+// 	var courseList = "English, French";
 
-// 	if (user.email == fbUser.email) {
-// 		buttonString = "Edit Course Preferences";
-// 		act = 2;
+// 	function setCourseList(props) {
+// 		courseList = "";
+// 		fbUser.coursesOffered.map((course) => {
+// 			courseList = courseList.concat(course);
+// 			courseList = courseList.concat(", ");
+// 		});
+
+// 		courseList = courseList.slice(0, -2);
 // 	}
-//Best fix
-// 	db.collection('users').doc(user.email).update({
-// 		coins: db.FieldValue.increment(-1),
-// 	});
-// } else {
-// 	setOffered(courseList);
-// 	setDesired(desiredCourseList);
-// 	console.log("Heww ", desiredC, offeredC);
 
-// 	//Strings for courses offered/desired
-
-// 	setCourseList(props);
-// 	setDesiredList(props);
+// 	function setDesiredList(props) {
+// 		desiredCourseList = "";
+// 		fbUser.desiredCourses.map((course) => {
+// 			desiredCourseList = desiredCourseList.concat(course);
+// 			desiredCourseList = desiredCourseList.concat(", ");
+// 		});
+// 		desiredCourseList = desiredCourseList.slice(0, -2);
+// 	}
 
 // 	//Modal
 // 	const updateCourses = (event) => {
@@ -120,6 +136,8 @@
 
 // 	return (
 // 		<div className="AccountContainer">
+// 			{console.log("Test", props.location.state.person)}
+// 			{console.log(user.email)}
 // 			<div className="TopHalfContainer">
 // 				<div className="row height100" style={{ verticalAlign: "middle" }}>
 // 					<div className="col-lg-4 my-auto col-12">
