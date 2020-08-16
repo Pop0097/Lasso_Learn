@@ -1,9 +1,9 @@
 body {
-  --main-color: #3f3530;
-  overflow: hidden;
+	--main-color: #3f3530;
+	overflow: hidden;
 }
 
 .app-body {
 	display: flex;
-	height: 100vh;
+	min-height: 100vh;
 }

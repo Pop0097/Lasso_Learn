@@ -21,17 +21,14 @@ function App() {
 					<>
 						<Header />
 						<div className="app-body">
-							<Sidebar />
 							<Switch>
-								{/* <Route exact path="/" component={FeaturedUsers}/>
-              <Route path="/account" component={Account} />
-              <Route path="/search" component={Search} />
-              <Route path="/userRoom"> */}
-								<Route path="/userRoom/:hostEmail" component={Chat} />
-								<Route path="/">
-									<h1>Welcome</h1>
+								<Route exact path="/" component={FeaturedUsers} />
+								{/* <Route path="/account" component={Account} />
+              	<Route path="/search" component={Search} /> */}
+								<Route path="/userRoom">
+									<Sidebar />
+									<Route path="/userRoom/:hostEmail" component={Chat} />
 								</Route>
-								{/* </Route> */}
 							</Switch>
 						</div>
 					</>

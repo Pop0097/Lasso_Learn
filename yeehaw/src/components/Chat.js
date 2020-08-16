@@ -23,12 +23,12 @@ function Chat() {
 	return (
 		<div className="chat">
 			<div className="chat-messages">
-				{roomMessages.map(({ message, date, profilePic, displayName }) => (
+				{roomMessages.map(({ message, date, profilePicture, displayName }) => (
 					<Message
 						message={message}
 						date={date}
 						displayName={displayName}
-						profilePic={profilePic}
+						profilePic={profilePicture}
 					/>
 				))}
 			</div>

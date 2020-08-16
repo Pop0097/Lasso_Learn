@@ -1,50 +1,54 @@
-a { text-decoration: none; }
-
-.HomeContainer{
-    min-height: calc(100vh-60px);
+a {
+	text-decoration: none;
 }
 
-.featured-users-container{
-    background-image: url("../assets/default-bg.jpg");
-    background-repeat: repeat;
+.HomeContainer {
+	min-height: calc(100vh-60px);
+}
+
+.featured-users-container {
+	background-image: url("../assets/default-bg.jpg");
+	background-repeat: repeat;
 	background-size: cover;
 }
 
-#welcome-header{
-    font-size: 35px;
-    margin: 40px;
+#welcome-header {
+	font-size: 35px;
+	margin: 40px;
 }
 
 .wanted {
-    font-size: 3em;
+	font-size: 3em;
 }
 
 hr {
-   width: 80%; 
-   margin-bottom: 30px;
-   height: 3px;
-   color: #b0b0b0;
+	width: 80%;
+	margin-bottom: 30px;
+	height: 3px;
+	color: #b0b0b0;
 }
 
 .center {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
 
 a {
-    color: honeydew;
-  }
-
-#result-indication{
-    text-align: center;
-    font-size: 40px;
-    margin-top: 40px;
-    margin-bottom: 20px;
+	color: honeydew;
 }
 
-.searchContainer{
-    text-align: center;
-    width: 100%;
-    height: 100%;
+#result-indication {
+	text-align: center;
+	font-size: 40px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.searchContainer {
+	text-align: center;
+	width: 100%;
+	background-image: url("../assets/default-bg.jpg");
+	background-repeat: repeat;
+	background-size: cover;
 }
