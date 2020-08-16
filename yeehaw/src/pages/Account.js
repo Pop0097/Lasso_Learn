@@ -5,59 +5,37 @@
 // import db from "../firebase";
 // import { useStateValue } from "../StateProvider";
 // import Modal from "react-modal";
-// import { initializeApp } from "firebase";
+
 
 // function Account(props) {
 // 	const [{ user }, dispatch] = useStateValue();
 // 	const [modalIsOpen, setIsOpen] = useState(false);
 // 	const [desiredC, setDesired] = useState("English, French");
 // 	const [offeredC, setOffered] = useState("HTML, CSS");
-//     //const [fbUser, setFbUser] = useState();
+//     const [fbUser, setFbUser] = useState();
 
 // 	//Check if user is present
-// 	var buttonString = "Send Ransom";
-// 	var act = 1;
-// 	let fbUser;
 
 // 	console.log("1 ", props.location.state.person);
-// 	console.log("2 ", user.email);
+//   console.log("2 ", user.email);
+    
 
-// 	// async function init() {
-// 	// 	if (props.location.state.person === user.email) {
-// 	// 		console.log("Current User");
-// 	// 		db.collection("users")
-// 	// 			.doc(user.email)
-// 	// 			.onSnapshot((snapshot) => setFbUser(snapshot.data()));
-// 	// 		buttonString = "Edit Course Preferences";
-// 	// 		act = 2;
-// 	// 	} else {
-// 	// 		console.log("NOT Current User");
-// 	// 		setFbUser(props.location.state.person);
-// 	// 	}
-// 	// }
-
-// 	async function init() {
-// 		if (props.location.state.person === user.email) {
-// 			console.log("Current User");
-// 			db.collection("users")
-// 				.doc(user.email)
-// 				.onSnapshot((snapshot) => {
-// 					fbUser = snapshot.data();
-// 				});
-// 			buttonString = "Edit Course Preferences";
-// 			act = 2;
-// 			return fbUser;
-// 		} else {
-// 			fbUser = props.location.state.person;
-// 			return fbUser;
-// 		}
-// 	}
-
-// 	useEffect(() => {
-// 		init().then((result) => {
-// 			fbUser = result;
-// 		});
-// 	}, []);
+//     var buttonString = "Send Ransom";
+//     var act = 1;
+    
+//     useEffect(() => {
+//         if (props.location.state.person === user.email) {
+//             console.log("Current User");
+//             db.collection("users")
+//                 .doc(user.email)
+//                 .onSnapshot((snapshot) => setFbUser(snapshot.data()));
+//             buttonString = "Edit Course Preferences";
+//             act = 2;
+//         } else {
+//             console.log("NOT Current User");
+//             setFbUser(props.location.state.person);
+//         }
+//     })
 
 // 	console.log("3 ", fbUser);
 

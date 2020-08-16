@@ -13,7 +13,7 @@ function UserCard({ user }) {
   });
 
   courseList = courseList.slice(0, -2);
-
+  
   return (
     <Link className="usercard" to={{pathname: '/account', state: {person: user}}}>
       <div >
