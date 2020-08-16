@@ -8,6 +8,11 @@ import { useStateValue } from "../StateProvider";
 import Modal from "react-modal";
 
 function Account(props) {
+	const [{ user }, dispatch] = useStateValue();
+	const [modalIsOpen, setIsOpen] = useState(false);
+	const [desiredC, setDesired] = useState("English, French");
+	const [offeredC, setOffered] = useState("HTML, CSS");
+
 	user = props.location.state.person;
 	var desiredCourseList = "HTML, CSS";
 	var courseList = "English, French";
@@ -32,13 +37,8 @@ function Account(props) {
 		desiredCourseList = desiredCourseList.slice(0, -2);
 	}
 
-	let history = useHistory();
-	const [{ user }, dispatch] = useStateValue();
-	const [modalIsOpen, setIsOpen] = useState(false);
-	const [desiredC, setDesired] = useState("English, French");
-	const [offeredC, setOffered] = useState("HTML, CSS");
-
 	const Action = () => {
+		//
 		if (act == 1) {
 			var newVal1 = user.coins + 1;
 			var newVal2 = user.points + 10;
@@ -47,8 +47,7 @@ function Account(props) {
 				.update({ coins: newVal1, points: newVal2 });
 
 			var data;
-			var docRef = db
-				.collection("users")
+			db.collection("users")
 				.doc(user.email)
 				.get()
 				.then(function (documentSnapshot) {
@@ -91,13 +90,13 @@ function Account(props) {
 
 		desiredCourseList = desiredC;
 		var desiredArray = desiredC.split(", ");
+		courseList = offeredC;
+		var offeredArray = offeredC.split(", ");
+
 		db.collection("users").doc(user.email).update({
 			desiredCourses: desiredArray,
 			numCoursesDesired: desiredArray.length,
 		});
-
-		courseList = offeredC;
-		var offeredArray = offeredC.split(", ");
 		console.log(offeredArray);
 		db.collection("users").doc(user.email).update({
 			coursesOffered: offeredArray,

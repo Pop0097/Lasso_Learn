@@ -23,7 +23,7 @@ function Header() {
 	const [input, setInput] = useState("");
 	const [currentUser, setCurrentUser] = useState(null);
 	const [{ user, userPic }, dispatch] = useStateValue();
-	const userEmail = user.email;
+
 	let history = useHistory();
 
 	const onChange = (event) => {
@@ -78,14 +78,14 @@ function Header() {
 								user: currentUser,
 							},
 						}}
-					>
-						<img
-							src={userPic}
-							alt=""
-							id="profile-image-small"
-							className="center"
-						/>
-					</Link> */}
+					> */}
+					<img
+						src={userPic}
+						alt=""
+						id="profile-image-small"
+						className="center"
+					/>
+					{/* </Link> */}
 				</div>
 			</div>
 		</div>
