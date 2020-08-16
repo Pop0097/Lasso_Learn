@@ -7,44 +7,26 @@ import db from "../firebase";
 import { useStateValue } from "../StateProvider"; 
 import Modal from 'react-modal';
 
-var desiredCourseList = "HTML, CSS";
-var courseList = "English, French";
-
-function setCourseList(props) {
-    courseList = "";
-    props.location.state.person.coursesOffered.map(( course ) => {
-        courseList = courseList.concat(course);
-        courseList = courseList.concat(", ");
-    });
-
-    courseList = courseList.slice(0, -2);
-}
-
-function setDesiredList(props) {
-    desiredCourseList = "";
-
-    props.location.state.person.desiredCourses.map(( course ) => {
-        desiredCourseList = desiredCourseList.concat(course);
-        desiredCourseList = desiredCourseList.concat(", ");
-    });
-
-    desiredCourseList = desiredCourseList.slice(0, -2);
-
-}
-
 function Account(props) {
     let history = useHistory();
     const [{ user }, dispatch] = useStateValue();
     const [modalIsOpen, setIsOpen] = useState(false);
     const [desiredC, setDesired] = useState("English, French");
     const [offeredC, setOffered] = useState("HTML, CSS");
+    const [coin, setCoin] = useState(props.location.state.person.coins);
+    const [point, setPoint] = useState(props.location.state.person.points);
 
     const Action = () => {
         if(act == 1) {
             var newVal1 = props.location.state.person.coins + 1;
             var newVal2 = props.location.state.person.points + 10;
             db.collection("users").doc(props.location.state.person.email).update({coins: newVal1, points: newVal2,});
-
+            
+            var newVal1 = props.location.state.person.coins + 1;
+            var newVal2 = props.location.state.person.points + 10;
+            setCoin(newVal1);
+            setPoint(newVal2);
+            
             var data;
             var docRef = db.collection('users').doc(user.email).get().then(function(documentSnapshot) {
                 if(documentSnapshot.exists) {
@@ -64,6 +46,31 @@ function Account(props) {
 
             setIsOpen(true);
         }
+    }
+    
+    var desiredCourseList = "HTML, CSS";
+    var courseList = "English, French";
+
+    function setCourseList(props) {
+        courseList = "";
+        props.location.state.person.coursesOffered.map(( course ) => {
+            courseList = courseList.concat(course);
+            courseList = courseList.concat(", ");
+        });
+
+        courseList = courseList.slice(0, -2);
+    }
+
+    function setDesiredList(props) {
+        desiredCourseList = "";
+
+        props.location.state.person.desiredCourses.map(( course ) => {
+            desiredCourseList = desiredCourseList.concat(course);
+            desiredCourseList = desiredCourseList.concat(", ");
+        });
+
+        desiredCourseList = desiredCourseList.slice(0, -2);
+
     }
 
     //Check if user is present
@@ -164,7 +171,7 @@ function Account(props) {
                                     <p>Bounty:</p>
                                 </div>
                                 <div className="col-7 TokenValue">
-                                    <p><b>{props.location.state.person.points} </b></p>
+                                    <p><b>{point} </b></p>
                                 </div>
                             </div>
                             <div className="row">
@@ -172,7 +179,7 @@ function Account(props) {
                                     <p>Gold:</p>
                                 </div>
                                 <div className="col-7 TokenValue">
-                                <p><b>{props.location.state.person.coins} </b></p>
+                                <p><b>{coin} </b></p>
                                 </div>
                             </div>
                         </div>
