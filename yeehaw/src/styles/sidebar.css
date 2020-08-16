@@ -1,14 +1,15 @@
 .sidebar {
-	background-color: #534741;
-	border-top: 1px solid #351b02;
-	max-width: 260px;
-	color: white;
-	flex: 0.3;
+	background-color: #3f3530;
+	max-width: 300px;
+	color: #eeeeee;
+	flex: 0.4;
 	
 }
 
-.sidebar > hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: 1px solid #4b3b27;
+.bar-hr {
+	margin: 0 0;
+	height: 0.5px;
+	width: 100%;
+	border: none;
+	background-color: rgb(141, 120, 106)
 }

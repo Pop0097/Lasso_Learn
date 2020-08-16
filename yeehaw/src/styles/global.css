@@ -10,11 +10,7 @@ body{
   overflow: auto;
 }
 
-.row-flex{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-}
+
 
 .buttons {
 	font-size: min(3vw, 1.5rem);
