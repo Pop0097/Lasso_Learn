@@ -23,7 +23,7 @@ function Sidebar() {
 			{userRooms.map((userRoom) => (
 				<div>
 					<SidebarOption name={userRoom.name} id={userRoom.id} />
-					<hr />
+					<hr className="bar-hr" />
 				</div>
 			))}
 		</div>
