@@ -2,56 +2,50 @@
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "../styles/account.css";
 // import "../styles/global.css";
-// import db from "../firebase";
+// import db, {fakeDB } from "../firebase";
 // import { useStateValue } from "../StateProvider";
 // import Modal from "react-modal";
-
 
 // function Account(props) {
 // 	const [{ user }, dispatch] = useStateValue();
 // 	const [modalIsOpen, setIsOpen] = useState(false);
 // 	const [desiredC, setDesired] = useState("English, French");
-// 	const [offeredC, setOffered] = useState("HTML, CSS");
-//     const [fbUser, setFbUser] = useState();
+//   const [offeredC, setOffered] = useState("HTML, CSS");
+//   const [coin, setCoin] = useState(props.location.state.person.coins);
+//   const [point, setPoint] = useState(props.location.state.person.points);
 
 // 	//Check if user is present
 
 // 	console.log("1 ", props.location.state.person);
-//   console.log("2 ", user.email);
-    
+//     console.log("2 ", user.email);
 
 //     var buttonString = "Send Ransom";
 //     var act = 1;
     
-//     useEffect(() => {
-//         if (props.location.state.person === user.email) {
-//             console.log("Current User");
-//             db.collection("users")
-//                 .doc(user.email)
-//                 .onSnapshot((snapshot) => setFbUser(snapshot.data()));
-//             buttonString = "Edit Course Preferences";
-//             act = 2;
-//         } else {
-//             console.log("NOT Current User");
-//             setFbUser(props.location.state.person);
-//         }
-//     })
-
-// 	console.log("3 ", fbUser);
+//     if (props.location.state.person.email === user.email) {
+//         console.log("Current User");
+//         buttonString = "Edit Course Preferences";
+//         act = 2;
+//     } 
 
 // 	const Action = () => {
 // 		if (act == 1) {
 // 			db.collection("users")
-// 				.doc(fbUser.email)
+// 				.doc(props.location.state.person.email)
 // 				.update({
-// 					coins: db.FieldValue.increment(1),
-// 					points: db.FieldValue.increment(10),
-// 				});
+// 					coins: fakeDB.FieldValue.increment(1),
+// 					points: fakeDB.FieldValue.increment(10),
+//                 });
+
+//             var newVal1 = props.location.state.person.coins + 1;
+//             var newVal2 = props.location.state.person.points + 10;
+//             setCoin(newVal1);
+//             setPoint(newVal2);
 
 // 			db.collection("users")
 // 				.doc(user.email)
 // 				.update({
-// 					coins: db.FieldValue.increment(-1),
+// 					coins: fakeDB.FieldValue.increment(-1),
 // 				});
 // 		} else {
 // 			setOffered(courseList);
@@ -68,7 +62,7 @@
 
 // 	function setCourseList(props) {
 // 		courseList = "";
-// 		fbUser.coursesOffered.map((course) => {
+// 		props.location.state.person.coursesOffered.map((course) => {
 // 			courseList = courseList.concat(course);
 // 			courseList = courseList.concat(", ");
 // 		});
@@ -78,7 +72,7 @@
 
 // 	function setDesiredList(props) {
 // 		desiredCourseList = "";
-// 		fbUser.desiredCourses.map((course) => {
+// 		props.location.state.person.desiredCourses.map((course) => {
 // 			desiredCourseList = desiredCourseList.concat(course);
 // 			desiredCourseList = desiredCourseList.concat(", ");
 // 		});
@@ -94,7 +88,7 @@
 // 		courseList = offeredC;
 // 		var offeredArray = offeredC.split(", ");
 
-// 		db.collection("users").doc(fbUser.email).update({
+// 		db.collection("users").doc(props.location.state.person.email).update({
 // 			desiredCourses: desiredArray,
 // 			numCoursesDesired: desiredArray.length,
 // 			coursesOffered: offeredArray,
@@ -121,14 +115,14 @@
 // 					<div className="col-lg-4 my-auto col-12">
 // 						<div className="ProfileImageLarge center">
 // 							<img
-// 								src={fbUser.profilePicture}
+// 								src={props.location.state.person.profilePicture}
 // 								id="profile-image-large"
 // 								className="center"
 // 							/>
 // 						</div>
 // 					</div>
 // 					<div className="col-lg-8 my-auto col-12 ToBottom height100">
-// 						<div id="name">{fbUser.displayName}</div>
+// 						<div id="name">{props.location.state.person.displayName}</div>
 // 					</div>
 // 				</div>
 // 			</div>
@@ -213,7 +207,7 @@
 // 								</div>
 // 								<div className="col-7 TokenValue">
 // 									<p>
-// 										<b>{fbUser.points} </b>
+// 										<b>{point} </b>
 // 									</p>
 // 								</div>
 // 							</div>
@@ -223,7 +217,7 @@
 // 								</div>
 // 								<div className="col-7 TokenValue">
 // 									<p>
-// 										<b>{fbUser.coins} </b>
+// 										<b>{coin} </b>
 // 									</p>
 // 								</div>
 // 							</div>

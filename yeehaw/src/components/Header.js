@@ -21,7 +21,15 @@ const StyledLink = styled(Link)`
 
 function Header() {
 	const [input, setInput] = useState("");
-	const [{ user, userPic }, dispatch] = useStateValue();
+	const [currentUser, setCurrentUser] = useState(null);
+
+    const [{ user, userPic }, dispatch] = useStateValue();
+    const userEmail = user.email;
+
+    // db.collection("users")
+    //     .doc(userEmail)
+    //     .onSnapshot((snapshot) => setCurrentUser(snapshot.data()));
+
 	let history = useHistory();
 
 	console.log("Header");
@@ -35,11 +43,12 @@ function Header() {
 
 		dispatch({
 			type: "set_search",
-			search_value: input,
+			search_value: input, 
 		});
 		setInput("");
 
 		history.push("/search");
+
 	};
 
 	return (
@@ -88,7 +97,7 @@ function Header() {
 						to={{
 							pathname: "/account",
 							state: {
-								person: user.email,
+								person: currentUser,
 							},
 						}}
 					>
