@@ -37,12 +37,14 @@
 // 	function setDesiredList(props) {
 // 		desiredCourseList = "";
 
-// 		fbUser.desiredCourses.map((course) => {
-// 			desiredCourseList = desiredCourseList.concat(course);
-// 			desiredCourseList = desiredCourseList.concat(", ");
-// 		});
-// 		desiredCourseList = desiredCourseList.slice(0, -2);
-// 	}
+// const Action = () => {
+// 	if (act == 1) {
+// 		db.collection("users")
+// 			.doc(fbUser.email)
+// 			.update({
+// 				coins: db.FieldValue.increment(1),
+// 				points: db.FieldValue.increment(10),
+// 			});
 
 // 	const Action = () => {
 // 		if (act == 1) {
@@ -75,6 +77,14 @@
 // 		buttonString = "Edit Course Preferences";
 // 		act = 2;
 // 	}
+//Best fix
+// 	db.collection('users').doc(user.email).update({
+// 		coins: db.FieldValue.increment(-1),
+// 	});
+// } else {
+// 	setOffered(courseList);
+// 	setDesired(desiredCourseList);
+// 	console.log("Heww ", desiredC, offeredC);
 
 // 	//Strings for courses offered/desired
 
