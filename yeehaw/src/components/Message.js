@@ -5,7 +5,7 @@ function Message({ message, date, displayName, profilePic }) {
 	return (
 		<div className="message">
 			<img src={profilePic} alt="" />
-			<div className="message-content">
+			<div>
 				<h4 className="message-info">
 					{displayName}{" "}
 					<span className="message-timestamp">

@@ -11,8 +11,10 @@
   height: min(40vw, 400px);
 }
 
+
 .usercard:hover{
  text-decoration: none; 
+ color: #3f3530;
 }
 
 .usercard * {

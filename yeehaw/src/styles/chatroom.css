@@ -2,11 +2,12 @@
 	flex: 0.7;
 	flex-grow: 1;
 	background-image: url("../assets/chat-bg.jpg");
-	height: 100vh;
+	height: 90vh;
 	overflow-y: scroll;
 }
-/*return: fix scrollbars and give input padding a colour
- */
-html{
-	overflow: hidden;
+
+.chat-offset{
+	height: 10vh;
+	width: 100%;
 }
+
