@@ -42,10 +42,6 @@ function Header() {
 		history.push("/search");
 	};
 
-	// db.collection("users")
-	// 	.doc(userEmail)
-	// 	.onSnapshot((snapshot) => setCurrentUser(snapshot.data()));
-
 	return (
 		<div className="HeaderContainer">
 			<div className="row height100">
@@ -75,7 +71,7 @@ function Header() {
 						to={{
 							pathname: "/account",
 							state: {
-								user: currentUser,
+								user: user.email,
 							},
 						}}
 					> */}
