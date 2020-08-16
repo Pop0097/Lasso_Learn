@@ -31,7 +31,6 @@ function ChatInput({ id }) {
 					onChange={(e) => setInput(e.target.value)}
 				/>
 				<button type="submit" onClick={sendMessage}>
-					SEND
 				</button>
 			</form>
 		</div>

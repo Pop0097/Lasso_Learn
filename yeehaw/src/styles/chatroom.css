@@ -1,15 +1,13 @@
 .chat {
 	flex: 0.7;
 	flex-grow: 1;
-	padding-bottom: 150px;
-	background-image: url("../assets/chat-bg.jpg");
-}
 
-.chat{
+	background-image: url("../assets/chat-bg.jpg");
+	height: 90vh;
 	overflow-y: scroll;
 }
 /*return: fix scrollbars and give input padding a colour
  */
 html{
-	overflow: auto;
+	overflow: hidden;
 }
