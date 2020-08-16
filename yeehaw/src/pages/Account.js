@@ -13,9 +13,9 @@ function Account(props) {
 	const [desiredC, setDesired] = useState("English, French");
 	const [offeredC, setOffered] = useState("HTML, CSS");
 
-	let fbUser = props.location.state.person;
-	let desiredCourseList = "HTML, CSS";
-	let courseList = "English, French";
+	fbUser = props.location.state.person;
+	var desiredCourseList = "HTML, CSS";
+	var courseList = "English, French";
 
 	function setCourseList(props) {
 		courseList = "";
@@ -42,8 +42,8 @@ function Account(props) {
 			db.collection("users")
 				.doc(fbUser.email)
 				.update({ 
-					coins: db.FieldValue.increment(1), 
-					points: db.FieldValue.increment(10), 
+					coins: firebase.firestore.FieldValue.increment(1), 
+					points: firebase.firestore.FieldValue.increment(10), 
 				});
 
 			// db.collection("users")
@@ -77,7 +77,7 @@ function Account(props) {
 
 			//Best fix 
 			db.collection('users').doc(user.email).update({
-				coins: db.FieldValue.increment(-1),
+				coins: firebase.firestore.FieldValue.increment(-1),
 			});
 		} else {
 			setOffered(courseList);
