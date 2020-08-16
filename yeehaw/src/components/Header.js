@@ -76,12 +76,26 @@ function Header() {
 						}}
 					> */}
 					<img
+						src="/messages.png"
+						alt="Open chat"
+						id="open-chat"
+						className="center icon-size"
+					/>
+				</div><div className="col-md-3 col-2 my-auto AccountLink text-center">
+					{/* <Link
+						to={{
+							pathname: "/account",
+							state: {
+								user: user.email,
+							},
+						}}
+					> */}
+					<img
 						src={userPic}
 						alt=""
 						id="profile-image-small"
 						className="center"
 					/>
-					{/* </Link> */}
 				</div>
 			</div>
 		</div>
