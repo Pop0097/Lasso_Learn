@@ -15,8 +15,9 @@ function UserCard({ user }) {
   courseList = courseList.slice(0, -2);
 
   return (
-    <Link to={{pathname: '/account', state: {person: user}}}>
-      <div className="usercard">
+    <Link className="usercard" to={{pathname: '/account', state: {person: user}}}>
+      <div >
+        <img src="/paper.png" class="uc-bg"></img>
         <h1 className="wanted">WANTED</h1>
         <hr />
         <h2 className="username">{user.displayName}</h2>

@@ -31,6 +31,7 @@ function Chat() {
 						profilePic={profilePic}
 					/>
 				))}
+				<div className="chat-offset"></div>
 			</div>
 			<ChatInput id={hostEmail} />
 		</div>

@@ -4,6 +4,10 @@ html{
 	background-repeat: repeat;
 }
 
+.featured-users-container{
+	overflow:auto;
+}
+
 body{
 	background-color: transparent;
 }
