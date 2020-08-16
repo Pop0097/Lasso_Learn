@@ -1,6 +1,6 @@
 # LassoLearn
 
-Project made for YeeHaw hacks in August 2020.
+A revolutionary platform for users to connect in one-on-one discussions to teach and/or learn new skills! Built using React JS and Firebase.
 
 # Deploying the Project
 
