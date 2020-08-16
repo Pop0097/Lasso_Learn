@@ -42,7 +42,7 @@
 
 .BottomHalfContainer{
     background-image: url("../assets/default-bg.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-attachment: fixed;
     min-height: calc(60vh);
 }

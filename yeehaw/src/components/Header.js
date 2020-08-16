@@ -61,8 +61,13 @@ function Linker({ user2 }){ //Link to the account page
     );
 }
 
+
+
 function Header() {
     const [currentUser, setCurrentUser] = useState(null);
+    const [input, setInput] = useState("");
+    let history = useHistory();
+
 
     const [{ user }, dispatch] = useStateValue();
     const userEmail = user.email;
@@ -70,22 +75,70 @@ function Header() {
     db.collection("users")
         .doc(userEmail)
         .onSnapshot((snapshot) => setCurrentUser(snapshot.data()));
+
+        const onChange = (event) => {
+            setInput(event.target.value);
+        };
+    
+        const onSubmit = (event) => {
+            event.preventDefault();
+    
+            dispatch({
+                type: "set_search",
+                search_value: input,
+            });
+            setInput("");
+    
+            history.push("/search");
+        };
     
     return(
         <div className="HeaderContainer">
-            <div className="row height100">
-                <div className="col-md-3 col-2 my-auto HeaderLogo text-center">
-                    <h1> <StyledLink to="/">LassoLearn</StyledLink></h1>
-                </div>
-                <div className="col-md-6 col-8 my-auto">
-                    <SearchBar />
-                </div>
-                <div className="col-md-3 col-2 my-auto AccountLink text-center">
-                    <Linker user2={currentUser} />
-                </div>
-            </div>
-        </div>
-    );
+			<div className="row height100">
+				<div className="col-md-2 col-2 my-auto HeaderLogo text-center">
+					<h1>
+						{" "}
+						<StyledLink to="/">LassoLearn</StyledLink>
+					</h1>
+				</div>
+				<div className="col-md-6 col-8 my-auto">
+					<form className="SearchForm center" onSubmit={onSubmit}>
+						<input
+							name="input"
+							type="text"
+							value={input}
+							onChange={onChange}
+							id="search-input"
+							placeHolder="Search for a Course!"
+						/>
+						<button id="submit-button" type="submit">
+							Search
+						</button>
+					</form>
+				</div>
+				<div className="ChatLink col-md-2 col-2 my-auto text-center">
+					<Link
+						to={{
+							pathname: "/userRoom",
+							state: {
+								person: user.email,
+							},
+						}}
+					>
+						<img
+							src="/messages.png"
+							alt=""
+							id="open-chat"
+							className="center icon-size"
+						/>
+					</Link>
+					</div>
+				<div className="col-md-2 col-2 my-auto AccountLink text-center">
+					<Linker user2={currentUser} />
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default Header

@@ -5,5 +5,5 @@ body {
 
 .app-body {
 	display: flex;
-	min-height: 100vh;
+	min-height: 130vh;
 }

@@ -34,7 +34,6 @@ function Account(props) {
 
                     newVal1 = data.coins - 1;
                     db.collection("users").doc(user.email).update({coins: newVal1,});
-                    alert("Ransom Paid!")
                 } else {
                     console.log("document not found");
                 }
@@ -48,7 +47,7 @@ function Account(props) {
         }
     }
     
-    var desiredCourseList = "HTML, CSS";
+    var desiredCourseList = "CSS, HTML";
     var courseList = "English, French";
 
     function setCourseList(props) {
