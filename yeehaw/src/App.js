@@ -26,8 +26,10 @@ function App() {
 								{/* <Route path="/account" component={Account} /> */}
 								<Route path="/search" component={Search} />
 								<Route path="/userRoom">
+									<div className="row-flex">
 									<Sidebar />
 									<Route path="/userRoom/:hostEmail" component={Chat} />
+									</div>									
 								</Route>
 							</Switch>
 						</div>

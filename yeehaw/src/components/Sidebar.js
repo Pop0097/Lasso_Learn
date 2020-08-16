@@ -20,11 +20,11 @@ function Sidebar() {
 
 	return (
 		<div className="sidebar">
-			<hr />
 			{userRooms.map((userRoom) => (
+				<div>
 				<SidebarOption name={userRoom.name} id={userRoom.id} />
+				<hr /></div>
 			))}
-			<hr />
 		</div>
 	);
 }

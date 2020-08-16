@@ -6,7 +6,7 @@
 }
 
 body {
-	font-family: Freakshow, serif;
+	font-family: Freakshow;
 	overflow: auto;
 }
 
@@ -14,4 +14,14 @@ body {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+}
+
+.buttons {
+	font-size: min(3vw, 1.5rem);
+	padding: 1rem;
+	background-color: rgba(63, 53, 48, 1);
+	border-radius: 10px;
+	user-select: none;
+	color: white;
+	width: min(35vw, 420px);
 }

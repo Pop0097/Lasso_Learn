@@ -46,15 +46,6 @@ body{
 	z-index:999;
 }
 
-.buttons {
-	font-size: min(3vw, 1.5rem);
-	padding: 1rem;
-	background-color: rgba(63, 53, 48, 1);
-	border-radius: 10px;
-	user-select: none;
-	color: white;
-	width: min(35vw, 420px);
-}
 
 .buttons:hover{
 	box-shadow: 0 0 5px;
