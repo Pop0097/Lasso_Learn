@@ -6,7 +6,7 @@ import firebase from "firebase";
 
 function ChatInput({ id }) {
 	const [input, setInput] = useState("");
-	const [{ user }] = useStateValue();
+	const [{ user, userPic }] = useStateValue();
 
 	const sendMessage = (e) => {
 		e.preventDefault();
@@ -16,7 +16,7 @@ function ChatInput({ id }) {
 				message: input,
 				date: firebase.firestore.FieldValue.serverTimestamp(),
 				displayName: user.displayName,
-				profilePic: user.photoURL,
+				profilePic: userPic,
 			});
 			setInput("");
 		}
@@ -30,8 +30,7 @@ function ChatInput({ id }) {
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
 				/>
-				<button type="submit" onClick={sendMessage}>
-				</button>
+				<button type="submit" onClick={sendMessage}></button>
 			</form>
 		</div>
 	);

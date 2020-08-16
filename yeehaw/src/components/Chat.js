@@ -22,15 +22,16 @@ function Chat() {
 
 	return (
 		<div className="chat">
-			<div id="chat-messages">
-				{roomMessages.map(({ message, date, profilePicture, displayName }) => (
+			<div className="chat-messages">
+				{roomMessages.map(({ message, date, profilePic, displayName }) => (
 					<Message
 						message={message}
 						date={date}
 						displayName={displayName}
-						profilePic={profilePicture}
+						profilePic={profilePic}
 					/>
-				))}<div className="chat-offset"></div>
+				))}
+				<div className="chat-offset"></div>
 			</div>
 			<ChatInput id={hostEmail} />
 		</div>

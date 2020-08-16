@@ -12,7 +12,7 @@
 	border: 1px solid gray;
 	border-radius: 3px;
 	padding: 10px 20px;
-		}
+}
 
 .chatInput > form > button {
 	display: none !important; /* Hiding the Button */
