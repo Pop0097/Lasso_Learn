@@ -66,10 +66,10 @@ function Header() {
 						</button>
 					</form>
 				</div>
-				<div className="col-md-2 col-2 my-auto text-center">
+				<div className="ChatLink col-md-2 col-2 my-auto text-center">
 					<Link
 						to={{
-							pathname: "/",
+							pathname: "/userRoom",
 							state: {
 								person: user.email,
 							},
@@ -82,6 +82,7 @@ function Header() {
 							className="center icon-size"
 						/>
 					</Link>
+					</div>
 				<div className="col-md-2 col-2 my-auto AccountLink text-center">
 					<Link
 						to={{

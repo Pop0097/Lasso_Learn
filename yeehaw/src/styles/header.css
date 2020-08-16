@@ -23,6 +23,11 @@
 	margin-right: 0px;
 }
 
+.ChatLink{
+	position: relative;
+	right: -70px;
+}
+
 .icon-size{
 	height: 50px;
 }
