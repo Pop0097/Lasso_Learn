@@ -23,8 +23,8 @@ function App() {
 						<div className="app-body">
 							<Switch>
 								<Route exact path="/" component={FeaturedUsers} />
-								{/* <Route path="/account" component={Account} />
-              	<Route path="/search" component={Search} /> */}
+								{/* <Route path="/account" component={Account} /> */}
+								<Route path="/search" component={Search} />
 								<Route path="/userRoom">
 									<Sidebar />
 									<Route path="/userRoom/:hostEmail" component={Chat} />

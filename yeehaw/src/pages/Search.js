@@ -3,32 +3,32 @@ import { useStateValue } from "../StateProvider";
 import db from "../firebase";
 import UserCard from "../components/UserCard";
 import "../styles/featuredusers.css";
+import "../styles/global.css";
 
 function Search() {
-	const [{ search }, dispatch] = useStateValue();
-	const [searchResults, setSearchResults] = useState([]);
+	// const [{ search }, dispatch] = useStateValue();
+	// const [searchResults, setSearchResults] = useState([]);
 
-	var userRef = db.collection("users");
-	var query = userRef
-		.where("coursesOffered", "array-contains", search)
-		.limit(10);
+	// var userRef = db.collection("users");
+	// var query = userRef
+	// 	.where("coursesOffered", "array-contains", search)
+	// 	.limit(10);
 
-	query.get().then((querySnapshot) => {
-		let docs = querySnapshot.docs;
-		for (let doc of docs) {
-			console.log("Here");
-			setSearchResults((prevSearchResults) => {
-				return [doc.data(), ...prevSearchResults];
-			});
-		}
-	});
+	// useEffect(() => {
+	// 	query.onSnapshot((snapshot) =>
+	// 		setSearchResults(snapshot.docs.map((doc) => doc.data()))
+	// 	);
+	// }, [searchResults]);
 
 	return (
 		<div className="searchContainer">
-			<p id="result-indication">Results for "{search}" </p>
-			{searchResults.map((user) => (
-				<UserCard user={user} />
-			))}
+			<h1>Hi</h1>
+			{/* <p id="result-indication">Results for "{search}" </p>
+			<div className="row-flex">
+				{searchResults.map((user) => (
+					<UserCard user={user} />
+				))}
+			</div> */}
 		</div>
 	);
 }

@@ -1,17 +1,17 @@
 /*fonts, etc. styles that all pages use*/
 
 @font-face {
-  font-family: Freakshow;
-  src:url("../assets/Carnevalee_Freakshow.ttf");
+	font-family: Freakshow;
+	src: url("../assets/Carnevalee_Freakshow.ttf");
 }
 
-body{
-  font-family: Freakshow, serif;
-  overflow: auto;
+body {
+	font-family: Freakshow, serif;
+	overflow: auto;
 }
 
-.row-flex{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+.row-flex {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
 }

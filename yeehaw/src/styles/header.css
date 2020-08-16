@@ -1,72 +1,77 @@
 .HeaderContainer {
-    height: 60px;
-    background-color: rgba(241, 213, 110, 1);
-    margin-bottom: 0;
-    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+	height: 60px;
+	background-color: rgba(241, 213, 110, 1);
+	margin-bottom: 0;
+	-moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
 }
 
-.HeaderLogo h1{
-    font-size: 40px;
-    font-family: Freakshow;
+.HeaderLogo h1 {
+	font-size: 40px;
+	font-family: Freakshow;
 }
 
 .SearchForm {
-    height: 40px;
-    width: 90%;
-    align-self: center;
+	height: 40px;
+	width: 90%;
+	align-self: center;
 }
 
-.row{
-    margin-left: 0px;
-    margin-right: 0px;
+.row {
+	margin-left: 0px;
+	margin-right: 0px;
 }
 
-.height100{
-    height: 100%;
+.height100 {
+	height: 100%;
 }
 
 #search-input {
-    width: 75%;
-    height: 30px;
-    font-size: 12px;
-    border-radius: 10px;
-    border: 2px solid #f4f4f4;
-    padding: 15px;
+	width: 70%;
+	font-size: 12px;
+	border-radius: 10px 0px 0px 10px;
+	border: 2px solid #f4f4f4;
+	padding: 7px;
+	float: left;
+	height: 30px;
+}
+
+form {
+	margin-top: 3px;
 }
 
 @media (max-width: 976px) {
-    #search-input {
-        width: 60%;
-    }
-
-    .HeaderLogo h1{
-        font-size: 35px;
-    }
+	.HeaderLogo h1 {
+		font-size: 35px;
+	}
 }
 
 #submit-button {
-    width: 50px;
-    height: 30px;
-    margin-left: 20px;
-    color: #000000;
-    background-color: #f4f4f4;
-    box-shadow: none;
-    font-size: 12px;
-    border-radius: 10px;
-    border: 1px solid #b0b0b0;
+	width: 10%;
+	height: 31px;
+	color: #ffffff;
+	background-color: rgba(92, 69, 57, 1);
+	box-shadow: none;
+	font-size: 12px;
+	border-radius: 0px 10px 10px 0px;
+	border: 1px solid #b0b0b0;
+	float: left;
+	width: 20%;
+	padding: 5px;
+	cursor: pointer;
+	margin-top: -1px;
 }
 
-#profile-image-small{
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    border: 1px solid #b0b0b0;
+#profile-image-small {
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	border: 1px solid #b0b0b0;
 }
 
 .center {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
