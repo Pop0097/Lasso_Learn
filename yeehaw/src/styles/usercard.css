@@ -2,19 +2,29 @@
   color: #3f3530;
   margin: 1.5vw;
   padding: 3vh 1.5vw;
-  background-image: url("../assets/paper.png");
+ /* background-image: url("../assets/paper.png");*/
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   text-align: center;
   width: min(30vw, 300px);
   height: min(40vw, 400px);
+  position: relative;
 }
 
+.uc-bg{
+  position: absolute;
+  z-index: -999;
+  width: min(30vw, 300px);
+  height: min(40vw, 400px);
+  left:0px;
+  filter: drop-shadow(5px 5px 5px hsla(260, 84%, 10%, 0.425));
+}
 
 .usercard:hover{
  text-decoration: none; 
- color: #3f3530;
+ color: #3f3530; 
+ filter: drop-shadow(5px 5px 5px hsl(34, 67%, 15%));
 }
 
 .usercard * {

@@ -17,6 +17,7 @@ function UserCard({ user }) {
   return (
     <Link className="usercard" to={{pathname: '/account', state: {person: user}}}>
       <div >
+        <img src="/paper.png" class="uc-bg"></img>
         <h1 className="wanted">WANTED</h1>
         <hr />
         <h2 className="username">{user.displayName}</h2>
