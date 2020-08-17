@@ -3,6 +3,7 @@ import "../styles/landing.css";
 import db, { provider, auth } from "../firebase";
 import { useStateValue } from "../StateProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useHistory } from 'react-router-dom';
 
 function Landing() {
 	function loadAvatars() {
@@ -15,8 +16,22 @@ function Landing() {
 		return avatars;
 	}
 
+	function getDocument(email) {
+		console.log("A", email);
+		return new Promise((resolve, reject) => {
+			var userDocument;
+			db.collection("users").doc(email).get().then(documentSnapshot => {
+				if(documentSnapshot.exists) {
+					userDocument = documentSnapshot.data(); 
+					resolve(userDocument);
+				}
+			});
+		})
+	}
+
 	const avatars = loadAvatars();
 	const [state, dispatch] = useStateValue();
+	let history = useHistory(); 
 
 	const signIn = (e) => {
 		auth.signInWithPopup(provider).then((result) => {
@@ -37,11 +52,16 @@ function Landing() {
 				})
 				.then(() => {
 					console.log(result.user);
-					dispatch({
-						type: "set_user",
-						user: result.user,
-						userPic: picture,
-					});
+					getDocument(result.user.email).then((doc) => {
+						console.log("B", doc);
+						dispatch({
+							type: "set_user",
+							user: result.user,
+							userPic: picture,
+							userDoc: doc,
+						});
+					})
+					history.push("/");
 				})
 				.catch((error) => {
 					alert(error.message);

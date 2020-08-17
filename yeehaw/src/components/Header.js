@@ -23,13 +23,10 @@ function Header() {
 	const [input, setInput] = useState("");
 	const [currentUser, setCurrentUser] = useState(null);
 
-    const [{ user, userPic }, dispatch] = useStateValue();
-    const userEmail = user.email;
-
-    // db.collection("users")
-    //     .doc(userEmail)
-    //     .onSnapshot((snapshot) => setCurrentUser(snapshot.data()));
-
+    const [{ user, userPic, userDoc }, dispatch] = useStateValue();
+	
+	//console.log("Test 2", userDoc.displayName); 
+	
 	let history = useHistory();
 
 	console.log("Header");
@@ -97,7 +94,7 @@ function Header() {
 						to={{
 							pathname: "/account",
 							state: {
-								person: currentUser,
+								person: userDoc,
 							},
 						}}
 					>
