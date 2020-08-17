@@ -9,8 +9,6 @@ import Modal from "react-modal";
 function Account(props) {
     const [{ user }, dispatch] = useStateValue();
 	const [modalIsOpen, setIsOpen] = useState(false);
-	const [desiredC, setDesired] = useState("English, French");
-    const [offeredC, setOffered] = useState("HTML, CSS");
     const [coin, setCoin] = useState(props.location.state.person.coins);
     const [point, setPoint] = useState(props.location.state.person.points);
 
@@ -54,6 +52,8 @@ function Account(props) {
         });
 
         courseList = courseList.slice(0, -2);
+
+        return courseList; 
     }
 
     const setDesiredList = () => {
@@ -66,7 +66,12 @@ function Account(props) {
 
         desiredCourseList = desiredCourseList.slice(0, -2);
 
+        return desiredCourseList; 
+
     }
+
+    const [desiredC, setDesired] = useState(setDesiredList);
+    const [offeredC, setOffered] = useState(setCourseList);
 
     //Check if user is present
     var buttonString = "Send Ransom";
@@ -96,8 +101,18 @@ function Account(props) {
 		setIsOpen(false);
     }
 
-    const isInvalid1 = ((offeredC.split(", ").length < 2) || (offeredC.split(", ").length > 5) || offeredC.indexOf(", ") == -1) || ((desiredC.split(", ").length < 2) || (desiredC.split(", ").length > 5) || desiredC.indexOf(", ") == -1);  
+    var isInvalid1;
 
+    const onChangeOffered = (event) => {
+        setOffered(event.target.value);
+        isInvalid1 = ((offeredC.split(", ").length < 2) || (offeredC.split(", ").length > 5) || offeredC.indexOf(", ") == -1) || ((desiredC.split(", ").length < 2) || (desiredC.split(", ").length > 5) || desiredC.indexOf(", ") == -1); 
+    }
+
+    const onChangeDesired = (event) => {
+        setDesired(event.target.value);
+        isInvalid1 = ((offeredC.split(", ").length < 2) || (offeredC.split(", ").length > 5) || offeredC.indexOf(", ") == -1) || ((desiredC.split(", ").length < 2) || (desiredC.split(", ").length > 5) || desiredC.indexOf(", ") == -1); 
+    }
+    
     return (
         <div className="AccountContainer">
  			<div className="TopHalfContainer">
@@ -159,7 +174,7 @@ function Account(props) {
 							className="center"
 							name="offeredC"
 							value={offeredC}
-							onChange={(event) => setOffered(event.target.value)}
+							onChange={onChangeOffered}
 						/>
 						<br />
 						<h4>Courses Desired (Seeking)</h4>
@@ -169,7 +184,7 @@ function Account(props) {
 							className="center"
 							name="desiredC"
 							value={desiredC}
-							onChange={(event) => setDesired(event.target.value)}
+							onChange={onChangeDesired}
 						/>
 						<br />
 						<button
@@ -228,7 +243,7 @@ function Account(props) {
 									<p>Up for Ransom: </p>
 								</div>
 								<div className="col-7 Criteria">
-									<p> {setCourseList} </p>
+									<p> {offeredC} </p>
 								</div>
 							</div>
 							<div className="row">
@@ -236,7 +251,7 @@ function Account(props) {
 									<p>Seeking: </p>
 								</div>
 								<div className="col-7 Criteria">
-									<p> {setDesiredList}</p>
+									<p> {desiredC}</p>
 								</div>
 							</div>
 							<div className="row">
