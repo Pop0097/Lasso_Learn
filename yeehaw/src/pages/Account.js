@@ -7,11 +7,24 @@ import { useStateValue } from "../StateProvider";
 import Modal from "react-modal";
 
 function Account(props) {
-    const [{ user }, dispatch] = useStateValue();
+    const [{ user, userDoc }, dispatch] = useStateValue();
 	const [modalIsOpen, setIsOpen] = useState(false);
     const [coin, setCoin] = useState(props.location.state.person.coins);
     const [point, setPoint] = useState(props.location.state.person.points);
 
+    function resetUserDoc() {
+        //resets current user's document 
+        var userDocument;
+        db.collection("users").doc(user.email).get().then(documentSnapshot => {
+            if(documentSnapshot.exists) {
+                userDocument = documentSnapshot.data(); 
+                dispatch({
+                    type: "set_doc",
+                    userDoc: userDocument,
+                })
+            }
+        });
+    }
 
     const Action = () => {
         if(act == 1) {
@@ -31,7 +44,8 @@ function Account(props) {
 				.doc(user.email)
 				.update({
 					coins: fakeDB.FieldValue.increment(-1),
-				});
+                });
+            resetUserDoc();            
         } else {
             setOffered(courseList);
             setDesired(desiredCourseList);
@@ -98,7 +112,8 @@ function Account(props) {
 			numCoursesOffered: offeredArray.length,
 		});
 
-		setIsOpen(false);
+        setIsOpen(false);
+        resetUserDoc();
     }
 
     var isInvalid1;

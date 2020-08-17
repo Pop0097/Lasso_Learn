@@ -58,6 +58,9 @@ function Landing() {
 							type: "set_user",
 							user: result.user,
 							userPic: picture,
+						});
+						dispatch({
+							type: "set_doc",
 							userDoc: doc,
 						});
 					})

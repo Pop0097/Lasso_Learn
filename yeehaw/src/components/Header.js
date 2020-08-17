@@ -24,9 +24,7 @@ function Header() {
 	const [currentUser, setCurrentUser] = useState(null);
 
     const [{ user, userPic, userDoc }, dispatch] = useStateValue();
-	
-	//console.log("Test 2", userDoc.displayName); 
-	
+		
 	let history = useHistory();
 
 	console.log("Header");

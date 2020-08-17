@@ -12,8 +12,12 @@ const reducer = (state, action) => {
 				...state,
 				user: action.user,
 				userPic: action.userPic,
-				userDoc: action.userDoc,
 			};
+		case "set_doc":
+			return {
+				...state,
+				userDoc: action.userDoc,
+			}
 		case "set_search":
 			return {
 				...state,
