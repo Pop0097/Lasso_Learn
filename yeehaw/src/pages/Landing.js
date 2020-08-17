@@ -24,7 +24,7 @@ function Landing() {
 				if(documentSnapshot.exists) {
 					userDocument = documentSnapshot.data(); 
 					resolve(userDocument);
-				}
+				} 
 			});
 		})
 	}
@@ -36,39 +36,55 @@ function Landing() {
 	const signIn = (e) => {
 		auth.signInWithPopup(provider).then((result) => {
 			let picture = avatars[Math.floor(Math.random() * 6)];
-			//add user to database
-			db.collection("users")
-				.doc(result.user.email)
-				.set({
-					displayName: result.user.displayName,
-					email: result.user.email,
-					profilePicture: picture,
-					coursesOffered: ["CSS", "HTML"],
-					desiredCourses: ["English", "French"],
-					numCoursesOffered: 2,
-					numCoursesDesired: 2,
-					points: 0,
-					coins: 20,
-				})
-				.then(() => {
-					console.log(result.user);
-					getDocument(result.user.email).then((doc) => {
-						console.log("B", doc);
+
+			db.collection("users").doc(result.user.email).get()
+				.then((docSnapshot) => { //if user doc already exists
+					if(docSnapshot.exists) {
+						console.log("User already exists");
+						var userDocument = docSnapshot.data();
 						dispatch({
 							type: "set_user",
 							user: result.user,
-							userPic: picture,
+							userPic: userDocument.profilePicture,
 						});
 						dispatch({
 							type: "set_doc",
-							userDoc: doc,
+							userDoc: userDocument,
 						});
-					})
-					history.push("/");
+					} else { //if user doc does not already exist (new user)
+						console.log("User does not already exist");
+						//add user to database
+						db.collection("users") //creates new user in database
+							.doc(result.user.email)
+							.set({
+								displayName: result.user.displayName,
+								email: result.user.email,
+								profilePicture: picture,
+								coursesOffered: ["CSS", "HTML"],
+								desiredCourses: ["English", "French"],
+								numCoursesOffered: 2,
+								numCoursesDesired: 2,
+								points: 0,
+								coins: 20,
+							})
+							.then(() => {
+								console.log(result.user);
+								getDocument(result.user.email).then((doc) => { //gets new user's document
+									console.log("B", doc);
+									dispatch({
+										type: "set_user",
+										user: result.user,
+										userPic: picture,
+									});
+									dispatch({
+										type: "set_doc",
+										userDoc: doc,
+									});
+								})
+							})
+					}
 				})
-				.catch((error) => {
-					alert(error.message);
-				});
+			history.push("/");
 		});
 	};
 
@@ -94,3 +110,40 @@ function Landing() {
 }
 
 export default Landing;
+
+
+// 	let picture = avatars[Math.floor(Math.random() * 6)];
+// 	//add user to database
+// 	db.collection("users")
+// 		.doc(result.user.email)
+// 		.set({
+// 			displayName: result.user.displayName,
+// 			email: result.user.email,
+// 			profilePicture: picture,
+// 			coursesOffered: ["CSS", "HTML"],
+// 			desiredCourses: ["English", "French"],
+// 			numCoursesOffered: 2,
+// 			numCoursesDesired: 2,
+// 			points: 0,
+// 			coins: 20,
+// 		})
+// 		.then(() => {
+// 			console.log(result.user);
+// 			getDocument(result.user.email).then((doc) => {
+// 				console.log("B", doc);
+// 				dispatch({
+// 					type: "set_user",
+// 					user: result.user,
+// 					userPic: picture,
+// 				});
+// 				dispatch({
+// 					type: "set_doc",
+// 					userDoc: doc,
+// 				});
+// 			})
+// 			history.push("/");
+// 		})
+// 		.catch((error) => {
+// 			alert(error.message);
+// 		});
+// });
